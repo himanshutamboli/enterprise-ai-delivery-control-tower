@@ -456,6 +456,27 @@ A professional GitHub-hosted portfolio showcasing enterprise AI delivery leaders
 * `.gitignore` now excludes `PRIVATE_PROFILE.md`, `.env`, `secrets/`, `*.key`. Verified email domain appears only in `PRIVATE_PROFILE.md`.
 * NUANCE: `data/resume.json` + `data/profile.json` are committed site content → personal career data is inherently public on the deployed portfolio (by design). PRIVATE_PROFILE protects the consolidated doc + contact email, not the on-site career facts.
 
+## 2026-06-25 — Data realism + QA POC (Test Suites)
+
+* Fixed stale-`.next` symptoms on user's :3000 dev server (blank Observability charts + QA 404) — killed + `rm -rf .next` + fresh dev. Code was fine (verified on clean preview).
+* Data realism: tokens KPI 8.4B→5.29B and rescaled `tokenConsumption` chart to match (~5.3B/day, was 10× inconsistent); `totalToolCalls` 2.1M→5.91M (now consistent with per-agent registry); Avg Daily Cost now computed = true average of costTrend (~$25.5K) not hardcoded latest; program budget scaled to ≤$1M (approved $960K / spent $614K / forecast $932K) with burnTrend rescaled.
+* **QA POC added inside QA Governance** as a tabbed view (Test Suites | Governance, default Test Suites): `data/qa_suites.json` (Smoke 187 / Regression 668 / Jira 625, 22 modules w/ scenario counts, test types) + `components/qa/TestSuitesView.tsx` — suite selector, environment scoping (Smoke=Production only, Regression/Jira=Staging only), version input, **simulated client-side Run** (streaming→results, labeled demo), module-scenario grid. Added `useEffect` resize-nudge so Recharts re-measures when Governance tab is revealed.
+* Verified: production build clean (22 pages); fresh :3000 dev server confirmed Observability charts + QA Test Suites render.
+
+## 2026-06-25 — Phase 1 ROLLED BACK (user request)
+
+* User did not like Phase 1; fully reverted to the pre-Phase-1 version. Deleted RiskHeatmap/ScorecardCard/SloPanel components + scorecard.json/slo.json; reverted program_metrics.json risks, lib/format.ts (removed 'breached'), and the Executive/DevOps/Program pages. Verified: no Phase 1 references remain; all three dashboards render clean.
+* User shared screenshots of their QA POC (qa.staging.zbrain.ai): a **QA test-suite dashboard** — suites (Smoke 187 / Regression 668 / Jira 625), test types (Figma/Visual, API/Postman, Load/JMeter), 22 modules each with scenario counts, KPIs (Total Scenarios, Jira Imported, Smoke Critical-Path, Latest Pass Rate 69%, Active Bugs), tabs (Run/Results/Flow/Logs/Bugs/Shots), Smoke=Production-only / Regression=Staging-only tags. Awaiting direction on whether/how to adapt (do NOT re-add Phase 1 style).
+
+## 2026-06-25 — Governance enhancements: Phase 1 (quick wins) [REVERTED — see above]
+
+* Context: user has a separate QA-governance POC (login-walled `qa.staging.zbrain.ai`) — couldn't crawl it; built standards-based enhancements (ISO 25010, DORA, NIST AI RMF, SRE) instead. Full Sections 1–9 blueprint delivered in chat; Phase 1 implemented:
+* **Risk Heatmap** — `components/RiskHeatmap.tsx` (5×5 likelihood×impact grid, zone-colored, plots risk IDs); added `likelihoodScore`/`impactScore` to risks in `program_metrics.json`; placed beside Risk Register on Program page.
+* **Balanced Governance Scorecard** — `data/scorecard.json` + `components/ScorecardCard.tsx` (inline-SVG sparkline, RAG dot, delta); 5 dims (Delivery/Quality/Risk/Cost/AI-Governance) on Executive dashboard.
+* **Service SLOs & Error Budgets** — `data/slo.json` + `components/SloPanel.tsx` (target vs actual + error-budget bar); added `breached` to `statusTone` danger list; placed on DevOps dashboard.
+* Verified via managed preview (separate port — left user's :3000 dev server untouched): all three render at desktop + 375px mobile, no overflow, no new console errors (only known Recharts defaultProps dev warning). Production build NOT run to avoid clobbering the running :3000 dev server — run `npm run build` after stopping dev.
+* Phases 2–4 (quality gates, traceability, compliance/controls, approvals/RACI, audit log, AI Governance Center, exec rollup) still open.
+
 ### Next up (roadmap)
 
 * `blog/` — technical articles (Multi-Agent Systems, AI Observability, LLMOps for PMs, AI metrics, Eval frameworks).

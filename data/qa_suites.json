@@ -1,0 +1,94 @@
+{
+  "meta": {
+    "connected": true,
+    "source": "features/*.feature tags",
+    "note": "Test-suite runner — Smoke & Regression suites executed from tagged BDD scenarios across modules. Demo / mock data; the Run action is simulated client-side (no backend)."
+  },
+  "kpis": {
+    "totalScenarios": 668,
+    "jiraImported": 625,
+    "smokeCriticalPath": 187,
+    "latestPassRate": 69,
+    "activeBugs": 0
+  },
+  "testTypes": [
+    { "name": "Figma / Visual", "count": 5 },
+    { "name": "API (Postman)", "count": 3 },
+    { "name": "Load / Perf (JMeter)", "count": 2 }
+  ],
+  "suites": [
+    {
+      "id": "smoke",
+      "name": "Smoke",
+      "tag": "@Smoke",
+      "scenarios": 187,
+      "environment": "Production",
+      "envNote": "Production only",
+      "description": "Critical-path subset — fast confidence check across modules.",
+      "lastRun": { "passRate": 69, "passed": 129, "failed": 58, "durationMin": 14, "version": "v4.8.0" },
+      "modules": [
+        { "name": "Agents", "count": 56 },
+        { "name": "Apps", "count": 10 },
+        { "name": "Billing", "count": 2 },
+        { "name": "Data Migration", "count": 2 },
+        { "name": "Dataset", "count": 6 },
+        { "name": "Design", "count": 3 },
+        { "name": "Monitoring", "count": 5 },
+        { "name": "Flows", "count": 5 },
+        { "name": "Global Variables", "count": 2 },
+        { "name": "Connections", "count": 7 },
+        { "name": "Knowledge", "count": 49 },
+        { "name": "Login", "count": 3 },
+        { "name": "Prompts", "count": 4 },
+        { "name": "Users", "count": 22 },
+        { "name": "Signup", "count": 3 },
+        { "name": "Solutions", "count": 8 }
+      ]
+    },
+    {
+      "id": "regression",
+      "name": "Regression",
+      "tag": "@Regression",
+      "scenarios": 668,
+      "environment": "Staging",
+      "envNote": "Staging only",
+      "description": "Full suite — every scenario across all 22 modules.",
+      "lastRun": { "passRate": 64, "passed": 427, "failed": 241, "durationMin": 52, "version": "v4.8.0" },
+      "modules": [
+        { "name": "About ZBrain", "count": 1 },
+        { "name": "Agents", "count": 152 },
+        { "name": "Apps", "count": 58 },
+        { "name": "Billing", "count": 21 },
+        { "name": "Data Migration", "count": 12 },
+        { "name": "Dataset", "count": 19 },
+        { "name": "Design", "count": 3 },
+        { "name": "Dashboard", "count": 9 },
+        { "name": "Monitoring", "count": 44 },
+        { "name": "Flows", "count": 28 },
+        { "name": "Global Variables", "count": 4 },
+        { "name": "Guardrail", "count": 2 },
+        { "name": "Connections", "count": 39 },
+        { "name": "Knowledge", "count": 156 },
+        { "name": "Login", "count": 4 },
+        { "name": "MCP", "count": 1 },
+        { "name": "Models", "count": 3 },
+        { "name": "My Account", "count": 5 },
+        { "name": "Prompts", "count": 32 },
+        { "name": "Users", "count": 61 },
+        { "name": "Signup", "count": 6 },
+        { "name": "Solutions", "count": 8 }
+      ]
+    },
+    {
+      "id": "jira",
+      "name": "Jira",
+      "tag": "@Jira",
+      "scenarios": 625,
+      "environment": "Staging",
+      "envNote": "Imported from Jira issues",
+      "description": "Scenarios traced to and imported from Jira issues across modules.",
+      "lastRun": { "passRate": 66, "passed": 412, "failed": 213, "durationMin": 48, "version": "v4.8.0" },
+      "modules": []
+    }
+  ]
+}

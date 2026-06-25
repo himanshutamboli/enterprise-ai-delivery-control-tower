@@ -23,6 +23,8 @@ import { compactNumber, currency, fullNumber, palette, percent, shortDate } from
 import data from '@/data/executive_metrics.json';
 
 const k = data.kpis;
+// True average of the daily cost series (was previously hardcoded to the latest day).
+const avgDailyCost = Math.round(data.costTrend.reduce((s, d) => s + d.cost, 0) / data.costTrend.length);
 
 export default function ExecutiveDashboard() {
   return (
@@ -43,7 +45,7 @@ export default function ExecutiveDashboard() {
           <KpiCard label="Token Consumption" value={`${compactNumber(k.totalTokens.value)}`} deltaPct={k.totalTokens.deltaPct} footnote="tokens / day" />
           <KpiCard label="Prod Incidents" value={fullNumber(k.productionIncidents.value)} deltaPct={k.productionIncidents.deltaPct} invertDelta footnote="last 7d" />
           <KpiCard label="Release Health" value={percent(k.releaseHealth.value, 0)} deltaPct={k.releaseHealth.deltaPct} />
-          <KpiCard label="Avg Daily Cost" value={currency(27500, { compact: true })} deltaPct={-1.8} invertDelta footnote="vs $28k budget" />
+          <KpiCard label="Avg Daily Cost" value={currency(avgDailyCost, { compact: true })} deltaPct={-1.8} invertDelta footnote="vs $28K budget" />
         </div>
 
         {/* Primary trends */}

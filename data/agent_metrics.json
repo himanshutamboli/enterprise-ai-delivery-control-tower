@@ -9,7 +9,7 @@
     "avgLatencyMs": 1840,
     "p95LatencyMs": 4120,
     "avgHallucinationScore": 0.031,
-    "totalToolCalls": 2148000,
+    "totalToolCalls": 5912800,
     "avgFailureRate": 1.3
   },
   "agents": [

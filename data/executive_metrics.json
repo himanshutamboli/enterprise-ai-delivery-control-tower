@@ -10,7 +10,7 @@
     "dailyRequests": { "value": 1284500, "deltaPct": 12.4, "trend": "up" },
     "successRate": { "value": 98.7, "deltaPct": 0.6, "trend": "up", "unit": "%" },
     "costPerRequest": { "value": 0.0214, "deltaPct": -9.1, "trend": "down", "unit": "$" },
-    "totalTokens": { "value": 8420000000, "deltaPct": 14.8, "trend": "up" },
+    "totalTokens": { "value": 5290000000, "deltaPct": 8.9, "trend": "up" },
     "productionIncidents": { "value": 3, "deltaPct": -40.0, "trend": "down" },
     "releaseHealth": { "value": 94.0, "deltaPct": 2.1, "trend": "up", "unit": "%" }
   },
@@ -47,13 +47,13 @@
     { "date": "2026-06-25", "cost": 27500, "budget": 28000 }
   ],
   "tokenConsumption": [
-    { "date": "2026-06-19", "input": 412000000, "output": 168000000 },
-    { "date": "2026-06-20", "input": 348000000, "output": 141000000 },
-    { "date": "2026-06-21", "input": 339000000, "output": 137000000 },
-    { "date": "2026-06-22", "input": 428000000, "output": 174000000 },
-    { "date": "2026-06-23", "input": 436000000, "output": 178000000 },
-    { "date": "2026-06-24", "input": 441000000, "output": 181000000 },
-    { "date": "2026-06-25", "input": 447000000, "output": 184000000 }
+    { "date": "2026-06-19", "input": 3418000000, "output": 1292000000 },
+    { "date": "2026-06-20", "input": 2974000000, "output": 1118000000 },
+    { "date": "2026-06-21", "input": 2906000000, "output": 1089000000 },
+    { "date": "2026-06-22", "input": 3561000000, "output": 1377000000 },
+    { "date": "2026-06-23", "input": 3688000000, "output": 1432000000 },
+    { "date": "2026-06-24", "input": 3776000000, "output": 1468000000 },
+    { "date": "2026-06-25", "input": 3812000000, "output": 1483000000 }
   ],
   "modelMix": [
     { "model": "claude-opus-4.8", "share": 22, "costShare": 41 },

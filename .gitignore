@@ -31,5 +31,8 @@ secrets/
 # private personal/career profile — never commit to a public repo
 PRIVATE_PROFILE.md
 
+# Claude Code local-only settings (machine-specific)
+.claude/settings.local.json
+
 # typescript
 *.tsbuildinfo

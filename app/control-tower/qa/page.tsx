@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import {
   Bar,
   BarChart,
@@ -18,17 +19,52 @@ import StatusBadge from '@/components/ui/StatusBadge';
 import { axisProps, ChartTooltip, gridProps } from '@/components/charts/ChartKit';
 import { fullNumber, palette, percent } from '@/lib/format';
 import data from '@/data/qa_metrics.json';
+import TestSuitesView from '@/components/qa/TestSuitesView';
 
 const k = data.kpis;
 
+const TABS = [
+  { id: 'suites', label: 'Test Suites' },
+  { id: 'governance', label: 'Governance' },
+] as const;
+
 export default function QaDashboard() {
   const readyGates = data.readinessGates.filter((g) => g.status === 'pass').length;
+  const [view, setView] = useState<'suites' | 'governance'>('suites');
+
+  // Recharts ResponsiveContainer measures on mount; when the Governance view is
+  // revealed via tab switch, nudge a resize so charts re-measure reliably.
+  useEffect(() => {
+    if (view !== 'governance') return;
+    const id = setTimeout(() => window.dispatchEvent(new Event('resize')), 60);
+    return () => clearTimeout(id);
+  }, [view]);
 
   return (
     <div className="pb-12">
-      <Topbar title="QA Governance" subtitle={`Release ${data.meta.release} · quality, coverage & release readiness`} />
+      <Topbar title="QA Governance" subtitle={`Release ${data.meta.release} · test suites, quality & release readiness`} />
+
+      <div className="px-5 pt-5 md:px-8">
+        <div className="inline-flex rounded-lg border border-border bg-surface p-1">
+          {TABS.map((t) => (
+            <button
+              key={t.id}
+              onClick={() => setView(t.id)}
+              className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
+                view === t.id ? 'bg-surface-2 text-white' : 'text-text-soft hover:text-white'
+              }`}
+            >
+              {t.label}
+            </button>
+          ))}
+        </div>
+      </div>
 
       <div className="space-y-6 px-5 py-6 md:px-8">
+        {view === 'suites' && <TestSuitesView />}
+
+        {view === 'governance' && (
+          <>
         <div className="grid grid-cols-2 gap-4 lg:grid-cols-6">
           <KpiCard label="Test Cases" value={fullNumber(k.testCases.value)} deltaPct={k.testCases.deltaPct} />
           <KpiCard label="Pass Rate" value={percent(k.passRate.value)} deltaPct={k.passRate.deltaPct} />
@@ -116,6 +152,8 @@ export default function QaDashboard() {
             </div>
           </Panel>
         </div>
+          </>
+        )}
       </div>
     </div>
   );

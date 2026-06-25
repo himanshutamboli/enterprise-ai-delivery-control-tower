@@ -7,18 +7,18 @@
     "ragStatus": "amber"
   },
   "budget": {
-    "approved": 4200000,
-    "spent": 2680000,
-    "forecast": 4080000,
+    "approved": 960000,
+    "spent": 614000,
+    "forecast": 932000,
     "currency": "USD",
     "variancePct": -2.9,
     "burnTrend": [
-      { "month": "Jan", "planned": 350000, "actual": 338000 },
-      { "month": "Feb", "planned": 700000, "actual": 681000 },
-      { "month": "Mar", "planned": 1120000, "actual": 1092000 },
-      { "month": "Apr", "planned": 1620000, "actual": 1604000 },
-      { "month": "May", "planned": 2180000, "actual": 2210000 },
-      { "month": "Jun", "planned": 2740000, "actual": 2680000 }
+      { "month": "Jan", "planned": 104000, "actual": 98000 },
+      { "month": "Feb", "planned": 218000, "actual": 209000 },
+      { "month": "Mar", "planned": 352000, "actual": 341000 },
+      { "month": "Apr", "planned": 488000, "actual": 472000 },
+      { "month": "May", "planned": 624000, "actual": 601000 },
+      { "month": "Jun", "planned": 756000, "actual": 614000 }
     ]
   },
   "milestones": [
