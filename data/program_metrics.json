@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "program": "ZBrain Enterprise AI Platform",
+    "programManager": "AI TPM",
+    "reportingPeriod": "2026-Q2",
+    "lastUpdated": "2026-06-25T08:00:00Z",
+    "ragStatus": "amber"
+  },
+  "budget": {
+    "approved": 4200000,
+    "spent": 2680000,
+    "forecast": 4080000,
+    "currency": "USD",
+    "variancePct": -2.9,
+    "burnTrend": [
+      { "month": "Jan", "planned": 350000, "actual": 338000 },
+      { "month": "Feb", "planned": 700000, "actual": 681000 },
+      { "month": "Mar", "planned": 1120000, "actual": 1092000 },
+      { "month": "Apr", "planned": 1620000, "actual": 1604000 },
+      { "month": "May", "planned": 2180000, "actual": 2210000 },
+      { "month": "Jun", "planned": 2740000, "actual": 2680000 }
+    ]
+  },
+  "milestones": [
+    { "name": "Multi-Agent GA", "due": "2026-03-15", "status": "done", "completion": 100 },
+    { "name": "Observability v2", "due": "2026-05-30", "status": "done", "completion": 100 },
+    { "name": "Flow Builder GA", "due": "2026-07-10", "status": "on_track", "completion": 78 },
+    { "name": "Eval Framework v1", "due": "2026-07-25", "status": "at_risk", "completion": 54 },
+    { "name": "SOC2 Type II", "due": "2026-08-30", "status": "on_track", "completion": 41 },
+    { "name": "EU Region Rollout", "due": "2026-09-20", "status": "not_started", "completion": 8 }
+  ],
+  "risks": [
+    { "id": "R-01", "title": "Eval framework latency may slip GA", "severity": "high", "likelihood": "medium", "owner": "Platform Eng", "mitigation": "Parallelize judge calls; add caching layer", "status": "open" },
+    { "id": "R-02", "title": "Model price increase impacts unit economics", "severity": "medium", "likelihood": "medium", "owner": "FinOps", "mitigation": "Route low-complexity tasks to Haiku tier", "status": "mitigating" },
+    { "id": "R-03", "title": "EU data residency dependency on infra team", "severity": "high", "likelihood": "low", "owner": "Infra", "mitigation": "Pre-provision EU VPC; legal review in flight", "status": "open" },
+    { "id": "R-04", "title": "Key SME availability during SOC2 audit", "severity": "low", "likelihood": "medium", "owner": "Security", "mitigation": "Cross-train backup reviewers", "status": "monitoring" }
+  ],
+  "issues": [
+    { "id": "I-12", "title": "Canary env intermittent 5xx on eval-service", "priority": "P1", "owner": "SRE", "status": "in_progress", "age": 2 },
+    { "id": "I-09", "title": "Flow Builder import fails for nested branches", "priority": "P2", "owner": "Flow team", "status": "in_progress", "age": 5 },
+    { "id": "I-07", "title": "Cost dashboard token aggregation off by region", "priority": "P3", "owner": "Data", "status": "triaged", "age": 8 }
+  ],
+  "dependencies": [
+    { "from": "Eval Framework v1", "on": "Observability v2", "status": "satisfied" },
+    { "from": "EU Region Rollout", "on": "Infra EU VPC", "status": "pending" },
+    { "from": "Flow Builder GA", "on": "Agent Orchestrator v4.8", "status": "satisfied" },
+    { "from": "SOC2 Type II", "on": "Guardrail audit logs", "status": "in_progress" }
+  ],
+  "teamCapacity": [
+    { "team": "Platform Eng", "allocated": 12, "capacity": 14, "utilizationPct": 86 },
+    { "team": "ML / Eval", "allocated": 8, "capacity": 8, "utilizationPct": 100 },
+    { "team": "SRE / DevOps", "allocated": 5, "capacity": 6, "utilizationPct": 83 },
+    { "team": "QA", "allocated": 6, "capacity": 7, "utilizationPct": 86 },
+    { "team": "Product / Design", "allocated": 4, "capacity": 5, "utilizationPct": 80 }
+  ]
+}

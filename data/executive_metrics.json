@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "program": "ZBrain Enterprise AI Platform",
+    "reportingPeriod": "2026-Q2",
+    "lastUpdated": "2026-06-25T08:00:00Z",
+    "environment": "production"
+  },
+  "kpis": {
+    "activeAgents": { "value": 47, "deltaPct": 8.2, "trend": "up" },
+    "dailyRequests": { "value": 1284500, "deltaPct": 12.4, "trend": "up" },
+    "successRate": { "value": 98.7, "deltaPct": 0.6, "trend": "up", "unit": "%" },
+    "costPerRequest": { "value": 0.0214, "deltaPct": -9.1, "trend": "down", "unit": "$" },
+    "totalTokens": { "value": 8420000000, "deltaPct": 14.8, "trend": "up" },
+    "productionIncidents": { "value": 3, "deltaPct": -40.0, "trend": "down" },
+    "releaseHealth": { "value": 94.0, "deltaPct": 2.1, "trend": "up", "unit": "%" }
+  },
+  "requestsTrend": [
+    { "date": "2026-06-12", "requests": 1042000, "success": 1027000, "failed": 15000 },
+    { "date": "2026-06-13", "requests": 1098000, "success": 1083400, "failed": 14600 },
+    { "date": "2026-06-14", "requests": 968000, "success": 955800, "failed": 12200 },
+    { "date": "2026-06-15", "requests": 1156000, "success": 1141200, "failed": 14800 },
+    { "date": "2026-06-16", "requests": 1203000, "success": 1188100, "failed": 14900 },
+    { "date": "2026-06-17", "requests": 1187000, "success": 1172400, "failed": 14600 },
+    { "date": "2026-06-18", "requests": 1221000, "success": 1206300, "failed": 14700 },
+    { "date": "2026-06-19", "requests": 1198000, "success": 1184700, "failed": 13300 },
+    { "date": "2026-06-20", "requests": 1011000, "success": 999800, "failed": 11200 },
+    { "date": "2026-06-21", "requests": 994000, "success": 983100, "failed": 10900 },
+    { "date": "2026-06-22", "requests": 1247000, "success": 1231500, "failed": 15500 },
+    { "date": "2026-06-23", "requests": 1268000, "success": 1252800, "failed": 15200 },
+    { "date": "2026-06-24", "requests": 1276000, "success": 1259900, "failed": 16100 },
+    { "date": "2026-06-25", "requests": 1284500, "success": 1267800, "failed": 16700 }
+  ],
+  "costTrend": [
+    { "date": "2026-06-12", "cost": 23800, "budget": 28000 },
+    { "date": "2026-06-13", "cost": 24600, "budget": 28000 },
+    { "date": "2026-06-14", "cost": 21200, "budget": 28000 },
+    { "date": "2026-06-15", "cost": 25900, "budget": 28000 },
+    { "date": "2026-06-16", "cost": 26800, "budget": 28000 },
+    { "date": "2026-06-17", "cost": 26300, "budget": 28000 },
+    { "date": "2026-06-18", "cost": 27100, "budget": 28000 },
+    { "date": "2026-06-19", "cost": 26500, "budget": 28000 },
+    { "date": "2026-06-20", "cost": 22400, "budget": 28000 },
+    { "date": "2026-06-21", "cost": 21900, "budget": 28000 },
+    { "date": "2026-06-22", "cost": 27400, "budget": 28000 },
+    { "date": "2026-06-23", "cost": 27600, "budget": 28000 },
+    { "date": "2026-06-24", "cost": 27300, "budget": 28000 },
+    { "date": "2026-06-25", "cost": 27500, "budget": 28000 }
+  ],
+  "tokenConsumption": [
+    { "date": "2026-06-19", "input": 412000000, "output": 168000000 },
+    { "date": "2026-06-20", "input": 348000000, "output": 141000000 },
+    { "date": "2026-06-21", "input": 339000000, "output": 137000000 },
+    { "date": "2026-06-22", "input": 428000000, "output": 174000000 },
+    { "date": "2026-06-23", "input": 436000000, "output": 178000000 },
+    { "date": "2026-06-24", "input": 441000000, "output": 181000000 },
+    { "date": "2026-06-25", "input": 447000000, "output": 184000000 }
+  ],
+  "modelMix": [
+    { "model": "claude-opus-4.8", "share": 22, "costShare": 41 },
+    { "model": "claude-sonnet-4.6", "share": 48, "costShare": 38 },
+    { "model": "claude-haiku-4.5", "share": 26, "costShare": 16 },
+    { "model": "embedding-v3", "share": 4, "costShare": 5 }
+  ],
+  "businessUnits": [
+    { "unit": "Customer Support", "requests": 486000, "successRate": 99.1, "costShare": 34 },
+    { "unit": "Sales Intelligence", "requests": 312000, "successRate": 98.4, "costShare": 27 },
+    { "unit": "Finance Ops", "requests": 248000, "successRate": 98.9, "costShare": 21 },
+    { "unit": "HR & Knowledge", "requests": 238500, "successRate": 98.2, "costShare": 18 }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "meta": {
+    "sourceOfTruth": "Official resume. Education, certifications, and recognitions preserved exactly as provided."
+  },
+  "education": [
+    {
+      "degree": "Master of Science in Applied Mathematics",
+      "institution": "Parul University, India",
+      "period": "2025 — 2027",
+      "status": "In progress"
+    },
+    {
+      "degree": "Bachelor of Science in Information Technology",
+      "institution": "Kalinga University, India",
+      "period": "Jul 2015 — Jun 2018",
+      "status": ""
+    }
+  ],
+  "certifications": [
+    {
+      "category": "Product Management / Product Owner",
+      "credentials": [
+        {
+          "title": "AI Product Management Specialization",
+          "issuer": "Duke University",
+          "period": "",
+          "status": "",
+          "file": "/certificates/ai-product-management-duke.pdf"
+        },
+        {
+          "title": "Digital Product Management Specialization",
+          "issuer": "UVA Darden School of Business",
+          "period": "",
+          "status": "",
+          "file": "/certificates/digital-product-management-uva.pdf"
+        }
+      ]
+    },
+    {
+      "category": "Program & Agile Management",
+      "credentials": [
+        {
+          "title": "Certified ScrumMaster (CSM)",
+          "issuer": "Scrum Alliance",
+          "period": "",
+          "status": "",
+          "file": "/certificates/csm-scrum-alliance.pdf"
+        },
+        {
+          "title": "Project Management Specialization",
+          "issuer": "Google",
+          "period": "",
+          "status": "",
+          "file": "/certificates/project-management-google.pdf"
+        },
+        {
+          "title": "Program Management Specialization",
+          "issuer": "Microsoft",
+          "period": "",
+          "status": "",
+          "file": "/certificates/program-management-microsoft.pdf"
+        }
+      ]
+    },
+    {
+      "category": "Data Science & Advanced AI",
+      "credentials": [
+        {
+          "title": "PG Program In Data Science, Machine Learning & Neural Networks",
+          "issuer": "Data Trained Institute",
+          "period": "Jul 2022 — Aug 2023",
+          "status": "",
+          "file": "/certificates/data-science-pg-datatrained.pdf"
+        }
+      ]
+    }
+  ],
+  "recognitions": [
+    {
+      "title": "Best Executor Spot Award",
+      "detail": "Mar & Apr 2025 · The Hackett Group",
+      "type": "professional"
+    },
+    {
+      "title": "Employee of the Month",
+      "detail": "Jul 2025 · LeewayHertz Technologies Pvt. Ltd.",
+      "type": "professional"
+    },
+    {
+      "title": "National-level Footballer",
+      "detail": "2010",
+      "type": "personal"
+    },
+    {
+      "title": "State Silver-medalist Kickboxer",
+      "detail": "Maharashtra · 2009",
+      "type": "personal"
+    }
+  ]
+}

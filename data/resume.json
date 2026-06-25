@@ -1,0 +1,453 @@
+{
+  "meta": {
+    "owner": "Technical Program Manager",
+    "sourceOfTruth": "Official resume. Facts (companies, titles, dates, metrics, technologies, achievements) are preserved exactly; only narrative framing and presentation are formatted.",
+    "assumptions": "employment_type defaults to 'Full-time'; 'industry' is derived from company context for the timeline. Confirm both."
+  },
+  "companies": [
+    {
+      "slug": "leewayhertz",
+      "company": "LeewayHertz Technology Pvt. Ltd. (A Hackett Group Company)",
+      "location": "",
+      "period": "Jan 2025 — Present",
+      "start": 202501,
+      "role": "Technical Program Manager (GenAI Solutions & Platform Product Delivery)",
+      "employment_type": "Full-time",
+      "industry": "Enterprise AI / GenAI Platforms",
+      "theme": "AI Platform Product Delivery",
+      "summary": "Technical Program Manager driving GenAI solutions and platform product delivery for ZBrain — owning requirements-to-delivery for a multi-agent AI platform spanning agent observability, Flow Builder, RAG pipelines, LLM workflows, AI governance, and LLMOps, while building the PM/QA/BA function from scratch.",
+      "business_context": [
+        "ZBrain is an enterprise multi-agent AI platform delivered to large organizations adopting GenAI in production.",
+        "Scope spans the full platform surface: multi-agent orchestration, agent observability, Flow Builder, RAG pipelines, and LLM workflows — under an AI governance and LLMOps model."
+      ],
+      "key_challenges": [
+        "Standing up a product-delivery discipline (PM/QA/BA) from scratch inside a fast-moving 60+ member organization.",
+        "Translating fast-evolving GenAI capabilities into a predictable requirement-to-sprint pipeline.",
+        "Controlling LLM token cost and production quality while shipping at platform pace."
+      ],
+      "initiatives": [
+        {
+          "name": "ZBrain Multi-Agent AI Platform",
+          "description": "Platform product delivery for the multi-agent system — orchestration, RAG pipelines, and LLM workflows.",
+          "my_role": "Program manager owning PRDs, roadmap, and cross-functional delivery.",
+          "technologies": ["ZBrain", "Multi-Agent Systems", "RAG", "LLM Workflows"],
+          "outcomes": ["Standardized the requirement-to-delivery flow across the platform", "Established PRD-driven delivery for new platform capabilities"]
+        },
+        {
+          "name": "Agent Observability",
+          "description": "Observability for production agents — traces, cost, and quality signals.",
+          "my_role": "Defined requirements and delivery for observability tooling.",
+          "technologies": ["Agent Observability", "LLMOps"],
+          "outcomes": ["Improved visibility into production agent behavior and cost"]
+        },
+        {
+          "name": "Flow Builder",
+          "description": "Visual workflow authoring for composing agent workflows.",
+          "my_role": "Product delivery ownership across discovery and execution.",
+          "technologies": ["Flow Builder"],
+          "outcomes": ["Enabled workflow composition within the platform"]
+        },
+        {
+          "name": "AI Governance & LLMOps",
+          "description": "Governance and operational lifecycle for LLM-based workflows.",
+          "my_role": "Established governance and LLMOps practices.",
+          "technologies": ["AI Governance", "LLMOps"],
+          "outcomes": ["Brought quality and cost controls into the delivery lifecycle"]
+        }
+      ],
+      "responsibilities": [
+        "Authored 40+ PRDs and user stories for GenAI platform capabilities",
+        "Built the PM / QA / BA function from scratch",
+        "Managed delivery across a 60+ member organization",
+        "Owned program delivery valued at $2M",
+        "Drove requirement-to-sprint planning and cross-functional execution",
+        "Established AI governance and LLMOps practices for the platform"
+      ],
+      "technical_environment": {
+        "cloud": [],
+        "data": ["RAG Pipelines"],
+        "ai": ["ZBrain", "Multi-Agent Systems", "LLM Workflows", "Agent Observability", "Flow Builder", "AI Governance", "LLMOps"],
+        "tools": []
+      },
+      "delivery_practices": ["PRD-driven product delivery", "Agile / sprint planning", "LLMOps", "AI governance"],
+      "metrics": [
+        { "value": "40+", "impact": "PRDs & user stories authored" },
+        { "value": "~25%", "impact": "Faster requirement-to-sprint cycle" },
+        { "value": "~30%", "impact": "Token cost reduction" },
+        { "value": "~20%", "impact": "Fewer production defects" },
+        { "value": "60+", "impact": "Member organization managed" },
+        { "value": "$2M", "impact": "Program delivery" }
+      ],
+      "achievements": [
+        "Built the PM / QA / BA function from scratch",
+        "Employee of the Month — Jul 2025 (LeewayHertz)",
+        "Best Executor Spot Award — Mar & Apr 2025 (The Hackett Group)"
+      ],
+      "portfolio_tags": ["AI Platform", "Multi-Agent", "LLMOps", "Agent Observability", "RAG", "AI Governance"],
+      "process_flow": "flowchart LR\n  REQ[\"Requirements\\n40+ PRDs\"] --> SPRINT[\"Sprint Planning\"]\n  SPRINT --> BUILD[\"Platform Delivery\\nZBrain\"]\n  BUILD --> AGENTS[\"Multi-Agent + RAG\\n+ Flow Builder\"]\n  AGENTS --> OBS[\"Agent Observability\"]\n  OBS --> GOV[\"AI Governance + LLMOps\"]\n  GOV --> REQ"
+    },
+    {
+      "slug": "ncs-global",
+      "company": "NCS Global (Singtel Group Company)",
+      "location": "",
+      "period": "Oct 2023 — Jan 2025",
+      "start": 202310,
+      "role": "Technical Program Manager (Data Services, Data Platform & DataOps)",
+      "employment_type": "Full-time",
+      "industry": "Enterprise Data Platforms",
+      "theme": "Enterprise Data Platform Modernization",
+      "summary": "Technical Program Manager for data services, data platform, and DataOps — leading an enterprise data platform modernization including a Cloudera-to-AWS migration and a Tableau-to-Azure reporting migration, with enterprise reporting and AI operational tooling.",
+      "business_context": [
+        "Enterprise data platform modernization for a Singtel Group company, impacting 20,000+ users.",
+        "Migration of legacy data and reporting estates to cloud (AWS, Azure) with a DataOps operating model."
+      ],
+      "key_challenges": [
+        "Migrating 300+ TB from Cloudera to AWS without disrupting enterprise operations.",
+        "Re-platforming Tableau reporting onto Azure while improving performance and reliability.",
+        "Reducing downtime and query latency for a large enterprise user base."
+      ],
+      "initiatives": [
+        {
+          "name": "Cloudera → AWS Migration",
+          "description": "Migration of the enterprise data platform from Cloudera to AWS.",
+          "my_role": "Program manager owning migration delivery and schedule.",
+          "technologies": ["AWS", "Cloudera"],
+          "outcomes": ["300+ TB migrated", "Delivered 3 months ahead of schedule", "~30% query performance improvement"]
+        },
+        {
+          "name": "Tableau → Azure Reporting Migration",
+          "description": "Migration of enterprise reporting from Tableau to Azure.",
+          "my_role": "Program delivery and stakeholder management.",
+          "technologies": ["Azure", "ADF", "Tableau"],
+          "outcomes": ["~45% reporting improvement", "Impacted 20,000+ users"]
+        },
+        {
+          "name": "DataOps & AI Operational Tools",
+          "description": "DataOps practices and AI operational tooling for the platform.",
+          "my_role": "Established DataOps delivery and operational tooling.",
+          "technologies": ["ServiceNow", "ADF"],
+          "outcomes": ["~30% downtime reduction", "~$200K annual savings"]
+        }
+      ],
+      "responsibilities": [
+        "Led data services, data platform, and DataOps program delivery",
+        "Owned the Cloudera-to-AWS migration end to end",
+        "Managed the Tableau-to-Azure enterprise reporting migration",
+        "Drove enterprise reporting improvements and AI operational tooling",
+        "Coordinated stakeholders across a 20,000+ user base"
+      ],
+      "technical_environment": {
+        "cloud": ["AWS", "Azure"],
+        "data": ["Cloudera", "Tableau", "ADF (Azure Data Factory)"],
+        "ai": ["AI Operational Tools"],
+        "tools": ["ServiceNow"]
+      },
+      "delivery_practices": ["DataOps", "Migration wave planning", "Agile delivery"],
+      "metrics": [
+        { "value": "300+ TB", "impact": "Data migrated (Cloudera → AWS)" },
+        { "value": "3 months", "impact": "Delivered ahead of schedule" },
+        { "value": "~30%", "impact": "Query performance improvement" },
+        { "value": "~30%", "impact": "Downtime reduction" },
+        { "value": "~45%", "impact": "Reporting improvement" },
+        { "value": "20,000+", "impact": "Users impacted" },
+        { "value": "~$200K", "impact": "Annual savings" }
+      ],
+      "achievements": [
+        "Delivered the 300+ TB Cloudera-to-AWS migration 3 months ahead of schedule",
+        "Improved query performance ~30% and reduced downtime ~30%",
+        "Improved enterprise reporting ~45% impacting 20,000+ users",
+        "Realized ~$200K annual savings"
+      ],
+      "portfolio_tags": ["Cloud Migration", "Data Platform", "DataOps", "AWS", "Azure", "Enterprise Reporting"],
+      "process_flow": "flowchart LR\n  CDH[\"Cloudera\\nOn-Prem\"] --> AWS[(\"AWS Data Platform\")]\n  TAB[\"Tableau\"] --> AZ[(\"Azure + ADF\")]\n  AWS --> OPS[\"DataOps\"]\n  AZ --> RPT[\"Enterprise Reporting\\n20,000+ users\"]\n  OPS --> SNOW[\"ServiceNow\"]"
+    },
+    {
+      "slug": "profusion-systems",
+      "company": "Profusion Systems Inc.",
+      "location": "",
+      "period": "Jun 2023 — Oct 2023",
+      "start": 202306,
+      "role": "Technical Agile Project Manager",
+      "employment_type": "Contract",
+      "industry": "Enterprise SaaS / Lending",
+      "theme": "Enterprise SaaS Delivery",
+      "summary": "Technical Agile Project Manager delivering an enterprise loan management platform — driving SaaS migrations, BI platform delivery, and an agile transformation that lifted sprint velocity and delivery speed.",
+      "business_context": [
+        "Delivery of an enterprise loan management platform alongside SaaS migrations and BI platforms.",
+        "Agile transformation across a 20-person delivery team."
+      ],
+      "key_challenges": [
+        "Migrating data and workloads (2TB+) while keeping the platform stable.",
+        "Raising delivery throughput and predictability through agile transformation.",
+        "Improving customer satisfaction during active migration."
+      ],
+      "initiatives": [
+        {
+          "name": "Loan Management Platform Delivery",
+          "description": "Delivery of the enterprise loan management platform.",
+          "my_role": "Technical agile project manager owning delivery.",
+          "technologies": ["SaaS", "BI Platforms"],
+          "outcomes": ["100+ epics delivered", "$50K+ cost prevention"]
+        },
+        {
+          "name": "SaaS Migration",
+          "description": "Migration of platform and data toward SaaS.",
+          "my_role": "Migration planning and execution.",
+          "technologies": ["SaaS"],
+          "outcomes": ["2TB+ data migrated"]
+        },
+        {
+          "name": "Agile Transformation",
+          "description": "Agile transformation across the delivery team.",
+          "my_role": "Drove agile practices, cadence, and metrics.",
+          "technologies": [],
+          "outcomes": ["Sprint velocity +40%", "Delivery speed +30%", "C-SAT +25%"]
+        }
+      ],
+      "responsibilities": [
+        "Led a 20-person delivery team",
+        "Delivered the loan management platform and BI platforms",
+        "Planned and executed SaaS migrations (2TB+)",
+        "Drove agile transformation and delivery metrics",
+        "Managed 100+ epics across the program"
+      ],
+      "technical_environment": {
+        "cloud": [],
+        "data": ["BI Platforms"],
+        "ai": [],
+        "tools": ["SaaS Platforms"]
+      },
+      "delivery_practices": ["Agile transformation", "Scrum", "Sprint metrics"],
+      "metrics": [
+        { "value": "20", "impact": "Team size led" },
+        { "value": "2TB+", "impact": "Data migrated" },
+        { "value": "100+", "impact": "Epics delivered" },
+        { "value": "+40%", "impact": "Sprint velocity" },
+        { "value": "+30%", "impact": "Delivery speed" },
+        { "value": "$50K+", "impact": "Cost prevention" },
+        { "value": "+25%", "impact": "Customer satisfaction (C-SAT)" }
+      ],
+      "achievements": [
+        "Lifted sprint velocity +40% and delivery speed +30% via agile transformation",
+        "Delivered 100+ epics across the loan management program",
+        "Prevented $50K+ in cost",
+        "Improved customer satisfaction (C-SAT) +25%"
+      ],
+      "portfolio_tags": ["Enterprise SaaS", "Agile Transformation", "Loan Management", "BI", "Migration"],
+      "process_flow": "flowchart LR\n  LEGACY[\"Loan Platform\"] --> SAAS[(\"SaaS Migration\\n2TB+\")]\n  SAAS --> BI[\"BI Platforms\"]\n  AGILE[\"Agile Transformation\"] --> DELIV[\"Delivery\\n100+ epics\"]\n  DELIV --> SAAS"
+    },
+    {
+      "slug": "mapsted",
+      "company": "Mapsted Corp",
+      "location": "Canada",
+      "period": "Feb 2023 — Jun 2023",
+      "start": 202302,
+      "role": "Engineering Project Manager",
+      "employment_type": "Contract",
+      "industry": "Geospatial AI / Indoor Positioning",
+      "theme": "AI Engineering & R&D Delivery",
+      "summary": "Engineering Project Manager delivering AI engineering and R&D programs in indoor positioning and geospatial AI — managing ML product delivery on AWS and Azure with strong milestone achievement and measurable ROI and accuracy gains.",
+      "business_context": [
+        "AI engineering and R&D delivery for indoor positioning and geospatial AI products.",
+        "ML product delivery on AWS and Azure."
+      ],
+      "key_challenges": [
+        "Delivering R&D-heavy ML products against firm milestones.",
+        "Improving ML model accuracy and time-to-market.",
+        "Raising deployment frequency for ML products."
+      ],
+      "initiatives": [
+        {
+          "name": "Indoor Positioning & Geospatial AI",
+          "description": "Delivery of indoor positioning and geospatial AI capabilities.",
+          "my_role": "Engineering project manager owning delivery.",
+          "technologies": ["Geospatial AI", "Indoor Positioning", "Machine Learning"],
+          "outcomes": ["~15% ML accuracy improvement", "30–35% time-to-market improvement"]
+        },
+        {
+          "name": "ML Product Delivery (AWS/Azure)",
+          "description": "ML product delivery across AWS and Azure.",
+          "my_role": "Program and milestone management.",
+          "technologies": ["AWS", "Azure", "Machine Learning"],
+          "outcomes": ["95% milestone achievement", "Deployment frequency +40%", "18% ROI improvement"]
+        }
+      ],
+      "responsibilities": [
+        "Managed AI engineering and R&D program delivery",
+        "Delivered ML products across AWS and Azure",
+        "Owned milestone planning and achievement",
+        "Drove improvements in ML accuracy and time-to-market",
+        "Managed a $2M program"
+      ],
+      "technical_environment": {
+        "cloud": ["AWS", "Azure"],
+        "data": [],
+        "ai": ["Machine Learning", "Geospatial AI", "Indoor Positioning"],
+        "tools": []
+      },
+      "delivery_practices": ["Agile delivery", "Milestone-based program management"],
+      "metrics": [
+        { "value": "$2M", "impact": "Program delivered" },
+        { "value": "95%", "impact": "Milestone achievement" },
+        { "value": "18%", "impact": "ROI improvement" },
+        { "value": "~15%", "impact": "ML accuracy improvement" },
+        { "value": "30–35%", "impact": "Time-to-market improvement" },
+        { "value": "+40%", "impact": "Deployment frequency" }
+      ],
+      "achievements": [
+        "Delivered a $2M AI/R&D program at 95% milestone achievement",
+        "Improved ML accuracy ~15% and time-to-market 30–35%",
+        "Raised deployment frequency +40%",
+        "Improved ROI 18%"
+      ],
+      "portfolio_tags": ["AI/ML", "Geospatial AI", "R&D Delivery", "AWS", "Azure"],
+      "process_flow": "flowchart LR\n  RND[\"AI / R&D\\nIndoor Positioning\"] --> ML[\"ML Products\"]\n  ML --> CLOUD[(\"AWS / Azure\")]\n  CLOUD --> DEPLOY[\"Deployment\\n+40% frequency\"]\n  DEPLOY --> MILE[\"Milestones\\n95% achieved\"]"
+    },
+    {
+      "slug": "soda-in-mind",
+      "company": "Soda In Mind Pte Ltd",
+      "location": "Singapore",
+      "period": "Jun 2019 — Jun 2022",
+      "start": 201906,
+      "role": "IT Project Manager",
+      "employment_type": "Full-time",
+      "industry": "Software / SaaS Delivery",
+      "theme": "Software Delivery Automation",
+      "summary": "IT Project Manager delivering SaaS software with agile delivery, ITIL service management, and automation — delivering 17+ projects with budget savings and a measurable reduction in user issues.",
+      "business_context": [
+        "SaaS software delivery with agile delivery and ITIL service management.",
+        "Automation to reduce operational effort and user issues across a 20-person team."
+      ],
+      "key_challenges": [
+        "Delivering a large portfolio (17+ projects) within budget.",
+        "Reducing recurring user issues through service discipline and automation.",
+        "Recovering hours lost to manual, repetitive work."
+      ],
+      "initiatives": [
+        {
+          "name": "SaaS Delivery Portfolio",
+          "description": "Delivery of 17+ SaaS software projects.",
+          "my_role": "IT project manager owning delivery.",
+          "technologies": ["SaaS"],
+          "outcomes": ["17+ projects delivered", "12–14% budget savings"]
+        },
+        {
+          "name": "Agile + ITIL Operating Model",
+          "description": "Agile delivery paired with ITIL service management.",
+          "my_role": "Established delivery and service practices.",
+          "technologies": ["ITIL"],
+          "outcomes": ["~35% reduction in user issues"]
+        },
+        {
+          "name": "Automation",
+          "description": "Automation of repetitive operational tasks.",
+          "my_role": "Drove automation initiatives.",
+          "technologies": ["Automation"],
+          "outcomes": ["15 hours/week automation savings"]
+        }
+      ],
+      "responsibilities": [
+        "Delivered 17+ SaaS software projects",
+        "Led a 20-person team",
+        "Ran agile delivery alongside ITIL service management",
+        "Drove automation of repetitive tasks",
+        "Managed budgets and operational efficiency"
+      ],
+      "technical_environment": {
+        "cloud": [],
+        "data": [],
+        "ai": [],
+        "tools": ["ITIL", "Automation", "SaaS Platforms"]
+      },
+      "delivery_practices": ["Agile delivery", "ITIL service management", "Automation"],
+      "metrics": [
+        { "value": "17+", "impact": "Projects delivered" },
+        { "value": "12–14%", "impact": "Budget savings" },
+        { "value": "20", "impact": "Team size led" },
+        { "value": "~35%", "impact": "User issues reduced" },
+        { "value": "15 hrs/week", "impact": "Automation time savings" }
+      ],
+      "achievements": [
+        "Delivered 17+ projects with 12–14% budget savings",
+        "Reduced user issues ~35% through ITIL discipline and automation",
+        "Saved 15 hours/week via automation",
+        "Led a 20-person delivery team"
+      ],
+      "portfolio_tags": ["SaaS Delivery", "Agile", "ITIL", "Automation"],
+      "process_flow": "flowchart LR\n  INTAKE[\"Project Intake\\n17+ projects\"] --> AGILE[\"Agile Delivery\"]\n  AGILE --> OPS[\"ITIL Service Mgmt\"]\n  OPS --> AUTO[\"Automation\\n15 hrs/week saved\"]\n  AUTO --> OPS"
+    },
+    {
+      "slug": "wns-global-services",
+      "company": "WNS Global Services",
+      "location": "Nashik, India",
+      "period": "Oct 2017 — Feb 2019",
+      "start": 201710,
+      "role": "Senior Associate",
+      "employment_type": "Full-time",
+      "industry": "BPM / IT Operations",
+      "theme": "Operations Automation & Security",
+      "summary": "Senior Associate driving operations automation and security — Linux and reporting automation, AWS monitoring, and security hardening that improved efficiency, security posture, and incident response.",
+      "business_context": [
+        "Operations automation and security for a global BPM environment.",
+        "Linux automation, reporting automation, AWS monitoring, and security hardening."
+      ],
+      "key_challenges": [
+        "Reducing manual effort across Linux operations and reporting.",
+        "Closing monitoring and security gaps.",
+        "Bringing incident response time down."
+      ],
+      "initiatives": [
+        {
+          "name": "Linux & Reporting Automation",
+          "description": "Automation of Linux operations and reporting.",
+          "my_role": "Built and ran automation.",
+          "technologies": ["Linux", "Automation"],
+          "outcomes": ["20 hours/month saved", "15–20% efficiency improvement"]
+        },
+        {
+          "name": "AWS Monitoring",
+          "description": "AWS-based monitoring and alerting.",
+          "my_role": "Implemented monitoring.",
+          "technologies": ["AWS", "Monitoring"],
+          "outcomes": ["Incident response under 2 hours"]
+        },
+        {
+          "name": "Security Hardening",
+          "description": "Systematic security hardening.",
+          "my_role": "Applied hardening and security improvements.",
+          "technologies": ["Security Hardening"],
+          "outcomes": ["25–30% security improvement"]
+        }
+      ],
+      "responsibilities": [
+        "Automated Linux operations and reporting",
+        "Implemented AWS monitoring and alerting",
+        "Applied systematic security hardening",
+        "Improved incident response times",
+        "Drove operational efficiency"
+      ],
+      "technical_environment": {
+        "cloud": ["AWS"],
+        "data": [],
+        "ai": [],
+        "tools": ["Linux", "Monitoring", "Automation", "Security Hardening"]
+      },
+      "delivery_practices": ["Operations automation", "Proactive monitoring", "Security hardening"],
+      "metrics": [
+        { "value": "25–28%", "impact": "Revenue growth" },
+        { "value": "20 hrs/month", "impact": "Time saved via automation" },
+        { "value": "15–20%", "impact": "Efficiency improvement" },
+        { "value": "25–30%", "impact": "Security improvement" },
+        { "value": "< 2 hours", "impact": "Incident response time" }
+      ],
+      "achievements": [
+        "Contributed to 25–28% revenue growth",
+        "Saved 20 hours/month through automation",
+        "Improved efficiency 15–20% and security 25–30%",
+        "Brought incident response under 2 hours"
+      ],
+      "portfolio_tags": ["Operations Automation", "Linux", "AWS Monitoring", "Security"],
+      "process_flow": "flowchart LR\n  SRV[\"Linux Operations\"] --> AUTO[\"Automation\\n20 hrs/month\"]\n  SRV --> MON[\"AWS Monitoring\"]\n  MON --> IR[\"Incident Response\\n< 2 hours\"]\n  SRV --> SEC[\"Security Hardening\\n25–30%\"]"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "program": "ZBrain Enterprise AI Platform",
+    "lastUpdated": "2026-06-25T08:00:00Z",
+    "window": "last 30d"
+  },
+  "kpis": {
+    "deploymentFrequency": { "value": 4.2, "deltaPct": 18.0, "trend": "up", "unit": "/day", "rating": "Elite" },
+    "leadTime": { "value": 16.4, "deltaPct": -22.0, "trend": "down", "unit": "h", "rating": "Elite" },
+    "mttr": { "value": 38, "deltaPct": -15.0, "trend": "down", "unit": "min", "rating": "Elite" },
+    "changeFailureRate": { "value": 6.8, "deltaPct": -2.4, "trend": "down", "unit": "%", "rating": "High" },
+    "releaseSuccessRate": { "value": 96.1, "deltaPct": 1.8, "trend": "up", "unit": "%" }
+  },
+  "doraTrend": [
+    { "week": "W21", "deployFreq": 3.1, "leadTimeH": 22.0, "mttrMin": 52, "cfrPct": 9.4 },
+    { "week": "W22", "deployFreq": 3.4, "leadTimeH": 20.6, "mttrMin": 48, "cfrPct": 8.8 },
+    { "week": "W23", "deployFreq": 3.6, "leadTimeH": 19.2, "mttrMin": 45, "cfrPct": 8.1 },
+    { "week": "W24", "deployFreq": 3.9, "leadTimeH": 17.8, "mttrMin": 41, "cfrPct": 7.4 },
+    { "week": "W25", "deployFreq": 4.2, "leadTimeH": 16.4, "mttrMin": 38, "cfrPct": 6.8 }
+  ],
+  "deployments": [
+    { "id": "dpl-4821", "service": "agent-orchestrator", "env": "production", "status": "success", "durationMin": 7, "timestamp": "2026-06-25T06:12:00Z" },
+    { "id": "dpl-4820", "service": "rag-indexer", "env": "production", "status": "success", "durationMin": 11, "timestamp": "2026-06-25T04:40:00Z" },
+    { "id": "dpl-4819", "service": "flow-builder-api", "env": "staging", "status": "success", "durationMin": 6, "timestamp": "2026-06-24T22:18:00Z" },
+    { "id": "dpl-4818", "service": "eval-service", "env": "production", "status": "rolled_back", "durationMin": 14, "timestamp": "2026-06-24T19:02:00Z" },
+    { "id": "dpl-4817", "service": "guardrail-service", "env": "production", "status": "success", "durationMin": 5, "timestamp": "2026-06-24T15:33:00Z" },
+    { "id": "dpl-4816", "service": "agent-orchestrator", "env": "production", "status": "success", "durationMin": 8, "timestamp": "2026-06-24T11:47:00Z" },
+    { "id": "dpl-4815", "service": "observability-collector", "env": "production", "status": "success", "durationMin": 9, "timestamp": "2026-06-24T09:21:00Z" }
+  ],
+  "pipelineStages": [
+    { "stage": "Build", "avgDurationMin": 3.2, "successRate": 99.4 },
+    { "stage": "Unit + Lint", "avgDurationMin": 4.8, "successRate": 97.1 },
+    { "stage": "Eval Gate", "avgDurationMin": 11.6, "successRate": 94.3 },
+    { "stage": "Integration", "avgDurationMin": 8.4, "successRate": 95.8 },
+    { "stage": "Canary", "avgDurationMin": 18.0, "successRate": 96.9 },
+    { "stage": "Promote", "avgDurationMin": 2.1, "successRate": 99.8 }
+  ],
+  "environments": [
+    { "name": "production", "version": "v4.8.0", "health": "healthy", "uptime": 99.98 },
+    { "name": "staging", "version": "v4.8.1-rc1", "health": "healthy", "uptime": 99.91 },
+    { "name": "canary", "version": "v4.8.1-rc1", "health": "degraded", "uptime": 99.62 }
+  ]
+}
