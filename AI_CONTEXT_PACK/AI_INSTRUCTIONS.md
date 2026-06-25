@@ -1,54 +1,61 @@
 # AI_INSTRUCTIONS
 
-How any AI assistant should work on this project. Read `PROJECT_CONTEXT.md`, `DECISIONS.md`, and `ROADMAP.md` first.
+> Continuity doc 11 of 16. How any AI assistant (Claude Code, ChatGPT, Gemini, Cursor, Windsurf, Copilot, future tools) must operate on this project.
 
-## How to behave
+## Bootstrap procedure (run when a new session starts)
+1. Read this pack: `PROJECT_CONTEXT` → `ARCHITECTURE` → `FEATURES` → `DECISIONS` → `ROADMAP` → `BACKLOG` → `KNOWN_ISSUES` → `DESIGN_SYSTEM` → `DEPLOYMENT` → this file. Plus root `PROJECT_MEMORY.md` and (privately) `PRIVATE_PROFILE.md`.
+2. Read the codebase and compare it to the docs; note inconsistencies.
+3. Produce a **Project Understanding Report**: executive summary, completion %, implemented features, missing features, technical debt, risks, recommended next actions.
+4. **Do not modify code until the user approves your understanding.**
 
-- Act as a senior engineer + product partner. Be concise and decisive; when a sensible default exists, take it and say so rather than asking.
-- The audience is recruiters/hiring managers for senior AI TPM roles. Optimize for an enterprise, executive, credible impression — never "beginner project" energy.
-- Preserve the established dark "control tower" aesthetic and component patterns; match the surrounding code's style.
-- When you finish a unit of work, briefly state what changed, what you verified, and the recommended next step.
+## Validation (answer before coding)
+- Top 10 implemented features. (See `FEATURES.md`.)
+- Top 10 remaining tasks. (See `BACKLOG.md` / `ROADMAP.md`.)
+- Architecture decisions that must NOT change. (See `DECISIONS.md` — esp. D1 static export, D4 JSON-driven, D6 resume-as-truth.)
+- Current project risks. (See `KNOWN_ISSUES.md`.)
+- Recommended next milestone.
+Proceed only after the user confirms.
+
+## Required behavior
+- Senior engineer + product partner. Concise and decisive; take sensible defaults and say so rather than over-asking.
+- Audience = recruiters/hiring managers for senior AI TPM roles. Optimize for an enterprise, executive, credible impression.
+- Preserve the dark "control tower" aesthetic and existing component patterns (`DESIGN_SYSTEM.md`).
+- After a unit of work, state what changed, what you verified, and the recommended next step.
 
 ## Coding standards
+- **TypeScript** everywhere; typed models in `lib/`.
+- **Reuse primitives:** `Panel`, `KpiCard`, `StatusBadge`, `ChartKit`, `Mermaid`, `lib/format.ts` (formatters + `palette` + `statusTone`). Don't reinvent.
+- **Data-driven, never hardcoded:** content from `data/*.json` / `lib/*.ts`; dynamic routes via `generateStaticParams`.
+- **Naming:** PascalCase components/files (`KpiCard.tsx`); camelCase functions/vars; kebab-case route segments + data files; slugs match data keys.
+- **Architecture conventions:** server components for prose/SEO; `'use client'` only for interactivity (charts, Mermaid, filters, simulations); theme tokens, not ad-hoc hex; new views must hold at 375/768/1440/1920 with no horizontal overflow (wide tables → `min-w` inside `overflow-x-auto`).
+- **Comments:** explain *why* for non-obvious choices (base-path handling, fs checks, resize nudge). Match neighboring density.
+- **Testing standards:** no unit-test suite (static portfolio). "Tests" = `npm run build` passes + browser verification on a managed preview (render, console clean, responsive). Verify visual/behavioral changes before claiming done.
 
-- **TypeScript** everywhere; typed data models in `lib/`.
-- **Reusable components** — extend `components/ui` (KpiCard, Panel, StatusBadge), `components/charts/ChartKit`, and `lib/format.ts` (formatters + color palette). Don't reinvent.
-- **Data-driven, never hardcoded** — content comes from `data/*.json`; dynamic routes use `generateStaticParams`. To add an item, edit the data file.
-- **Server vs client** — keep prose/SEO in server components; isolate interactivity (Recharts, Mermaid, filters) in `'use client'` components.
-- **Tailwind tokens** — use the theme palette (`brand`, `surface`, `text-soft`, `muted`, etc.), not ad-hoc hex.
-- **Comments** — explain *why* for non-obvious choices (e.g., base-path handling, fs existence checks). Keep comment density consistent with neighbors.
-- **Responsive** — every new view must hold at 375 / 768 / 1440 / 1920 with no horizontal overflow. Put wide tables in `overflow-x-auto` with a `min-w-[…]`.
+## Workflow
+**Before modifying code:** explain the change, explain why, identify affected files.
+**Implement:** data model (`data/`/`lib/`) → reusable components → pages. Keep changes scoped; don't touch unrelated files.
+**Verify:** `npm run build` must pass (stop `npm run dev` first — see below). For UI changes, run a preview and check the affected routes (render, console, responsive at mobile + desktop). Verify on a **separate managed preview port**, never by building over the user's live dev server.
+**After changes:** update documentation, the continuity pack, and the changelog (see End-of-session rule).
 
-## Things to avoid
-
-- ❌ **Do not break static export.** No SSR, server actions, route handlers, runtime env, `next/image` optimization, or anything requiring a server. Everything must work as static HTML on GitHub Pages.
-- ❌ **Do not invent career facts.** `data/resume.json` + `data/profile.json` are the single source of truth. Never add/alter companies, titles, dates, metrics, technologies, or achievements that aren't provided. Formatting/framing only.
-- ❌ **Do not add paid dependencies or services.** Budget is ₹0 (no paid APIs/DB/hosting/domains).
-- ❌ **Do not run `npm run build` while `npm run dev` is running** — it corrupts the shared `.next` cache (`Cannot find module './####.js'`). Stop dev first.
-- ❌ **Do not commit `PRIVATE_PROFILE.md`, `.env`, or `secrets/`** (gitignored). Keep personal specifics out of public docs/code beyond what already lives in the site's data files.
-- ❌ **Do not introduce broken certificate links** — the cert link only renders if the file exists in `public/certificates/`; preserve that pattern.
-- ❌ Avoid excessive animation, generic chatbot/demo content, or over-engineering.
-
-## Required workflow
-
-1. **Orient** — read the context pack (this folder) + `PROJECT_MEMORY.md`. Inspect existing code before changing it.
-2. **Plan small** — for a feature, follow the `prompts/` flow (brainstorm → plan → build → review → release) at the appropriate stage.
-3. **Implement** — data model in `data/`/`lib/` first, then reusable components, then pages. Keep changes scoped; don't touch unrelated files.
-4. **Verify before claiming done:**
-   - `npm run build` must pass (stop the dev server first). Confirm expected pages are generated.
-   - For visual/behavioral changes, run the dev server and check the affected routes (render, console clean, responsive at mobile + desktop).
-5. **Reset trick** if the dev server breaks: `lsof -ti tcp:3000 | xargs kill -9; rm -rf .next; npm run dev`.
-6. **Record** — update `ROADMAP.md` (status), `DECISIONS.md` (if a significant choice was made), and `PROJECT_MEMORY.md` (running build log).
+## Never
+- ❌ Break the static export (no SSR, server actions, route handlers, runtime env, `next/image` optimization, or any server dependency).
+- ❌ Invent career facts. `data/resume.json` + `data/profile.json` are the single source of truth — format only.
+- ❌ Add paid dependencies or services (budget ₹0).
+- ❌ Run `npm run build` while `npm run dev` is running (corrupts `.next`).
+- ❌ Commit `PRIVATE_PROFILE.md`, `.env*`, `secrets/`, `credentials/`, `*.pem`, `*.key`, or any secret/token/credential.
+- ❌ Rebuild already-completed features, break the architecture, or ignore these docs.
+- ❌ Introduce broken certificate links (preserve the fs-existence-check pattern).
 
 ## Useful commands
-
 ```bash
-npm run dev      # local dev → http://localhost:3000
-npm run build    # static export into ./out  (stop dev first)
-npm run serve    # preview the static export
+npm run dev      # http://localhost:3000
+npm run build    # static export → ./out  (stop dev first)
+npm run serve    # preview ./out
 npm run lint
+# recover a corrupted dev cache:
+lsof -ti tcp:3000 | xargs kill -9; rm -rf .next; npm run dev
 ```
 
-## Deploy (when ready)
-
-`git init` → commit → push to GitHub → Settings → Pages → Source: **GitHub Actions**. The workflow sets `NEXT_PUBLIC_BASE_PATH` and publishes `out/`. Do not commit secrets or `PRIVATE_PROFILE.md`.
+## End-of-session rule
+At the end of every significant work session, update so the continuity docs always reflect the latest state:
+`PROJECT_CONTINUITY_PACK.md` · `PROJECT_RESTART_PROMPT.md` · `CHANGELOG.md` · `ROADMAP.md` · `PROJECT_MEMORY.md` (and any of FEATURES/BACKLOG/KNOWN_ISSUES/IMPLEMENTATION_HISTORY that changed).

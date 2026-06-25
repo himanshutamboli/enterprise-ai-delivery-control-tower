@@ -1,43 +1,81 @@
 # DECISIONS
 
-Key technical decisions, the reasoning, and the alternatives rejected. Update this file when a significant choice is made.
+> Continuity doc 4 of 16. Major decisions with reasoning, alternatives, impact, and future implications. Append when a significant choice is made.
 
-## 1. Next.js 14 + static export (not Vite SPA, not SSR)
-- **Why:** Matches the documented stack and deploys free on GitHub Pages. `output: 'export'` produces pure static HTML — no server cost.
-- **Rejected:** Vite + React SPA (lighter, but diverges from the project's stated Next.js stack and loses file-based routing/metadata). Next.js with SSR/ISR (no server runtime exists on GitHub Pages).
+## D1 — Next.js 14 with static export (not Vite SPA, not SSR)
+- **Decision:** Next.js App Router with `output: 'export'`.
+- **Reasoning:** Matches the documented stack; produces pure static HTML for free GitHub Pages hosting; keeps file-based routing + metadata.
+- **Alternatives considered:** Vite + React SPA; Next.js with SSR/ISR; Astro.
+- **Rejected:** SSR/ISR (no server runtime on Pages); Vite SPA (loses routing/metadata, diverges from stated stack); Astro (extra learning, no clear win).
+- **Impact:** No server features allowed anywhere; all data must be build-time static.
+- **Future implications:** Any "live" feature must be client-side or a third-party widget; a backend would require leaving Pages.
 
-## 2. React 18.3 + Recharts 2.12 + Tailwind 3.4 (not React 19 / Tailwind 4)
-- **Why:** Battle-tested, friction-free combination. Recharts 2.x is fully stable on React 18; Tailwind 3 has a simple, predictable PostCSS setup.
-- **Rejected:** React 19 + Recharts (peer-dependency/runtime risk at the time) and Tailwind 4 (CSS-first config + `@tailwindcss/postcss` migration friction). The visual result is identical; stability was prioritized for a portfolio.
+## D2 — React 18.3 + Recharts 2.12 + Tailwind 3.4 (not React 19 / Tailwind 4)
+- **Decision:** Conservative, battle-tested versions.
+- **Reasoning:** Recharts 2.x is stable on React 18; Tailwind 3 has a simple PostCSS setup; zero version friction for a portfolio.
+- **Rejected:** React 19 + Recharts (peer/runtime risk at the time); Tailwind 4 (CSS-first config migration friction).
+- **Impact:** Recharts emits a harmless `defaultProps` deprecation **warning in dev only** (gone in prod).
+- **Future implications:** Upgrading React/Recharts/Tailwind later is possible but should be a deliberate, tested step.
 
-## 3. Static export details: `trailingSlash: true`, `images.unoptimized: true`, `basePath` via env
-- **Why:** GitHub Pages serves files without a server, so nested routes need `/path/` URLs, image optimization must be off, and project sites live under `/<repo-name>`. `NEXT_PUBLIC_BASE_PATH` is set by the deploy workflow (`actions/configure-pages`) so links/assets resolve.
+## D3 — Static-export hardening: `trailingSlash`, `images.unoptimized`, base path via env
+- **Decision:** `trailingSlash: true`, `images: { unoptimized: true }`, `basePath` from `NEXT_PUBLIC_BASE_PATH`.
+- **Reasoning:** Pages serves files without a server (nested routes need `/path/`), has no image optimizer, and project sites live under `/<repo>`.
+- **Impact:** Plain `<a href="/x">` links must add base path manually (see `certHref` on the Education page).
+- **Future implications:** A custom domain or `<user>.github.io` repo makes base path empty; the workflow handles both.
 
-## 4. JSON-driven content + `generateStaticParams` (no hardcoded pages)
-- **Why:** Adding a case study, company, or diagram = edit a JSON/TS data file; routes auto-generate. Clean separation of content and presentation; trivial to extend.
-- **Rejected:** Hand-written page per entity (does not scale, violates the brief's "data must come from JSON").
+## D4 — JSON-driven content + `generateStaticParams` (no hardcoded entity pages)
+- **Decision:** Content lives in `data/*.json` / `lib/*.ts`; dynamic routes auto-generate.
+- **Reasoning:** Adding a case study, company, or diagram = edit data; routes follow. Clean content/presentation split.
+- **Rejected:** One hand-written page per entity (doesn't scale).
+- **Impact:** Editors never touch JSX for content changes.
+- **Future implications:** Blog should follow the same JSON/MD-driven pattern.
 
-## 5. Mermaid rendered client-side with graceful fallback
-- **Why:** Diagrams render after hydration in the browser; works under static export. The `Mermaid` component falls back to showing the raw definition if a diagram fails, so it never hard-crashes a page.
-- **Trade-off:** Diagram SVGs are not in the server HTML (rendered post-hydration). Acceptable for a portfolio; the surrounding prose is server-rendered for SEO.
-- **Rejected:** Build-time SVG generation (extra tooling/complexity for marginal benefit).
+## D5 — Mermaid rendered client-side with graceful fallback
+- **Decision:** `components/Mermaid.tsx` renders diagrams post-hydration; falls back to raw text on error.
+- **Reasoning:** Works under static export; never hard-crashes a page.
+- **Trade-off:** Diagram SVGs aren't in server HTML (rendered after hydration); acceptable for a portfolio (prose is server-rendered for SEO).
+- **Future implications:** If SEO of diagrams matters, consider build-time SVG generation.
 
-## 6. `data/resume.json` is the single source of truth for Experience
-- **Why:** The owner's resume is authoritative. Facts (company names, titles, dates, metrics, technologies, achievements) are preserved exactly; only narrative framing is written.
-- **Consequence:** The earlier placeholder `data/experience.json` was deleted, and the fabricated `ImpactChart` (invented trend data) was removed — **no invented metrics**. Company-level metrics render as KPI cards instead.
+## D6 — `data/resume.json` is the single source of truth for Experience
+- **Decision:** Career facts come only from the resume; AI may format but not invent.
+- **Reasoning:** Integrity — a portfolio must not fabricate companies/metrics/dates/tech.
+- **Impact:** Deleted an earlier placeholder dataset; removed a fabricated trend chart (no invented metrics). Years-of-experience standardized to "8+ years."
+- **Future implications:** All career edits must trace to the resume; `PRIVATE_PROFILE.md` mirrors the canonical facts.
 
-## 7. Grouped certifications + filesystem-existence check for links
-- **Why:** Certifications are organized as categories → multiple credentials. Each credential's "View certificate" link **only renders if the file exists** in `public/certificates/` (checked at build via `fs.existsSync` in the server component). Dropping a PDF/JPG in lights up the link; missing files never produce a broken link.
-- **Alternative offered:** external Google Drive links (set `"file": "https://…"`). Repo-hosted files are recommended (faster, never break on Drive permission changes).
+## D7 — Grouped certifications + filesystem-existence check for links
+- **Decision:** Certifications are categories → credentials; a "View certificate" link renders only if the file exists in `public/certificates/` (checked at build via `fs.existsSync`).
+- **Reasoning:** Dropping a PDF lights up its link; missing files never produce broken links.
+- **Alternative:** External Google Drive links (still supported via `http…` URLs) — repo-hosted preferred (faster, never breaks).
+- **Future implications:** Future certs = drop file + add one JSON entry.
 
-## 8. Dark "control tower" theme via custom Tailwind tokens
-- **Why:** Enterprise-console aesthetic (Datadog/Grafana/Azure). Centralized palette + chart colors in `tailwind.config.ts` and `lib/format.ts` for consistency.
+## D8 — Dark "control tower" theme via custom Tailwind tokens
+- **Decision:** Centralized palette in `tailwind.config.ts` + chart colors in `lib/format.ts`.
+- **Reasoning:** Enterprise-console aesthetic (Datadog/Grafana/Azure); single source for color consistency.
+- **Future implications:** New components must use theme tokens, not ad-hoc hex. See `DESIGN_SYSTEM.md`.
 
-## 9. Mock data for dashboards, clearly labeled
-- **Why:** No real integrations allowed/needed; demonstrates metric/KPI design without backends. Data is realistic and reflects real platform experience, labeled as mock in the UI.
+## D9 — Mock dashboard data, clearly labeled; internal consistency enforced
+- **Decision:** Realistic mock metrics, kept internally consistent (e.g., token KPI matches token chart; tool calls match per-agent registry; program budget ≤ $1M).
+- **Reasoning:** Inconsistent/round numbers read as fake; consistency reads as real telemetry.
+- **Impact:** Reworked token totals (8.4B→5.3B to match chart), tool calls (2.1M→5.9M), avg daily cost (now the true average), budget scaled to ≤$1M.
+- **Future implications:** When editing one metric, check dependent figures for consistency.
 
-## 10. Responsive strategy
-- **Why:** Sidebar shows at `lg+`, replaced by a scrollable `MobileNav` below. Wide tables get `min-w-[…]` inside `overflow-x-auto` containers so they scroll legibly on phones instead of crushing. Verified at 375/768/1440/1920 with zero horizontal overflow.
+## D10 — QA POC integrated as a tabbed view inside QA Governance
+- **Decision:** "Test Suites | Governance" tabs on `/control-tower/qa`, default Test Suites; Run is a **client-side simulation** (no backend).
+- **Reasoning:** Showcases the owner's QA automation POC without a server; honest "demo" labeling.
+- **Impact:** Added a resize-nudge `useEffect` so Recharts re-measures when the Governance tab is revealed.
+- **Future implications:** Other "automation" surfaces can follow the same simulate-and-label pattern.
 
-## 11. Operational: never run `next build` while `next dev` is live
-- **Why:** Both share the `.next` directory. Running a production build over a running dev server corrupts its webpack chunks (`Cannot find module './####.js'`). Always stop dev before building; reset with `rm -rf .next` if it happens.
+## D11 — Responsive strategy
+- **Decision:** Sidebar at `lg+`, `MobileNav` below; wide tables get `min-w-[…]` inside `overflow-x-auto`.
+- **Reasoning:** Legible on phones (tables scroll, not crush); console layout on desktop.
+- **Impact:** Verified zero horizontal overflow at 375/768/1440/1920.
+
+## D12 — Operational: never run `next build` while `next dev` is live
+- **Decision:** Stop dev before building; reset with `rm -rf .next` if corrupted.
+- **Reasoning:** Both share `.next`; a build over a running dev server corrupts webpack chunks → `Cannot find module './####.js'` / route 404s / blank charts.
+- **Future implications:** AI assistants verify on a separate managed preview port, never building over the user's live dev server.
+
+## D13 — AI continuity pack as the transfer mechanism
+- **Decision:** Maintain `AI_CONTEXT_PACK/` (public) + gitignored `PRIVATE_PROFILE.md` so any new AI session can resume without chat history.
+- **Reasoning:** Portability across Claude/ChatGPT/Gemini/Cursor/Windsurf/Copilot.
+- **Future implications:** Continuity docs must be updated at the end of each significant session (see `AI_INSTRUCTIONS.md`).

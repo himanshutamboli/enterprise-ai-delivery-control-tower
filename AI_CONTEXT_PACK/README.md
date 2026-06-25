@@ -1,27 +1,41 @@
-# AI Context Pack
+# AI Continuity Pack
 
-A portable, self-contained context package for this project. Upload these files into a fresh AI assistant (new Claude account/chat, Cursor, etc.) and it can continue the work **without any prior chat history**.
+A self-contained context package that lets this project be transferred to **any** new AI session, account, or platform (Claude Code, ChatGPT, Gemini, Cursor, Windsurf, GitHub Copilot, future tools) **without prior chat history**.
 
-## What's inside
+## How to use
+1. In a fresh AI session, upload this `AI_CONTEXT_PACK/` folder (and, privately, the gitignored `PRIVATE_PROFILE.md` from the repo root).
+2. Paste the prompt from **`PROJECT_RESTART_PROMPT.md`**.
+3. The assistant produces a Project Understanding Report and waits for approval before coding.
 
+> Quick path: **`PROJECT_CONTINUITY_PACK.md`** alone is a self-contained transfer doc. **`EXECUTIVE_BRIEF.md`** is a <5-min overview.
+
+## Contents
 | File | Purpose |
 |---|---|
-| `PROJECT_CONTEXT.md` | Purpose, user profile, goals, constraints, architecture, stack, folder structure, status. **Start here.** |
-| `DECISIONS.md` | Key technical decisions, reasoning, and rejected alternatives. |
-| `ROADMAP.md` | Completed work, current work, next milestones. |
-| `AI_INSTRUCTIONS.md` | How the AI should behave, coding standards, things to avoid, required workflow. |
+| `PROJECT_CONTINUITY_PACK.md` | **Master consolidated transfer doc** — start here |
+| `EXECUTIVE_BRIEF.md` | <5-minute overview |
+| `PROJECT_RESTART_PROMPT.md` | Paste-anywhere bootstrap prompt for a new AI |
+| `PROJECT_CONTEXT.md` | Purpose, users, goals, constraints, stack, status |
+| `ARCHITECTURE.md` | System architecture, modules, data models, diagrams |
+| `FEATURES.md` | Full feature inventory with statuses |
+| `DECISIONS.md` | Major decisions, reasoning, alternatives, impact |
+| `IMPLEMENTATION_HISTORY.md` | Chronological build log by phase |
+| `ROADMAP.md` | Completed / in-progress / upcoming / long-term |
+| `BACKLOG.md` | Prioritized work (Critical→Low) w/ effort & deps |
+| `KNOWN_ISSUES.md` | Bugs, debt, gaps, UX/security/perf/deploy notes |
+| `DESIGN_SYSTEM.md` | Theme, palette, typography, conventions, a11y, responsive |
+| `DEPLOYMENT.md` | Repo, branches, CI/CD, build/run, rollback (no secrets) |
+| `AI_INSTRUCTIONS.md` | Behavior, standards, workflow, bootstrap/validation rules |
+| `CHANGELOG.md` | Consolidated change history |
+| `README.md` | This index |
 
-## Intended flow
+**At repo root:** `PROJECT_MEMORY.md` (long-term memory / build log) and `PRIVATE_PROFILE.md` (personal/career data — **gitignored**, never committed).
 
+## Transfer workflow
 ```
-Claude Code → build project → generate this pack → commit to GitHub
-   → new AI account → upload this pack → continue work
+Build → update continuity pack + CHANGELOG → commit to Git → open new AI session
+      → upload pack (+ PRIVATE_PROFILE privately) → validate understanding → continue
 ```
 
-You should never need old chat history again. Keep the pack updated as the project evolves (especially `ROADMAP.md` and `DECISIONS.md`).
-
-## Private data
-
-Personal/career specifics are kept in **`PRIVATE_PROFILE.md`** at the repo root, which is **gitignored** and must NOT be committed to a public repo. When continuing work in a private AI session, upload `PRIVATE_PROFILE.md` alongside this pack; for anything public, omit it.
-
-No secrets, credentials, or tokens are included in this pack.
+## Maintenance
+At the end of each significant session, refresh: `PROJECT_CONTINUITY_PACK.md`, `PROJECT_RESTART_PROMPT.md`, `CHANGELOG.md`, `ROADMAP.md`, `PROJECT_MEMORY.md` (and any detail doc that changed). No secrets, credentials, or tokens belong in this pack.

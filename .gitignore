@@ -22,17 +22,23 @@ yarn-error.log*
 
 # local env files
 .env
+.env.*
 .env*.local
 
 # secrets
 secrets/
+credentials/
 *.key
+*.pem
 
 # private personal/career profile — never commit to a public repo
 PRIVATE_PROFILE.md
 
 # Claude Code local-only settings (machine-specific)
 .claude/settings.local.json
+
+# generated continuity bundle (the pack itself is already tracked)
+AI_CONTEXT_PACK.zip
 
 # typescript
 *.tsbuildinfo
