@@ -84,7 +84,7 @@
         "Best Executor Spot Award — Mar & Apr 2025 (The Hackett Group)"
       ],
       "portfolio_tags": ["AI Platform", "Multi-Agent", "LLMOps", "Agent Observability", "RAG", "AI Governance"],
-      "process_flow": "flowchart LR\n  REQ[\"Requirements\\n40+ PRDs\"] --> SPRINT[\"Sprint Planning\"]\n  SPRINT --> BUILD[\"Platform Delivery\\nZBrain\"]\n  BUILD --> AGENTS[\"Multi-Agent + RAG\\n+ Flow Builder\"]\n  AGENTS --> OBS[\"Agent Observability\"]\n  OBS --> GOV[\"AI Governance + LLMOps\"]\n  GOV --> REQ"
+      "process_flow": "flowchart LR\n  REQ[\"Requirements<br/>40+ PRDs\"] --> SPRINT[\"Sprint Planning\"]\n  SPRINT --> BUILD[\"Platform Delivery<br/>ZBrain\"]\n  BUILD --> AGENTS[\"Multi-Agent + RAG<br/>+ Flow Builder\"]\n  AGENTS --> OBS[\"Agent Observability\"]\n  OBS --> GOV[\"AI Governance + LLMOps\"]\n  GOV --> REQ"
     },
     {
       "slug": "ncs-global",
@@ -159,7 +159,7 @@
         "Realized ~$200K annual savings"
       ],
       "portfolio_tags": ["Cloud Migration", "Data Platform", "DataOps", "AWS", "Azure", "Enterprise Reporting"],
-      "process_flow": "flowchart LR\n  CDH[\"Cloudera\\nOn-Prem\"] --> AWS[(\"AWS Data Platform\")]\n  TAB[\"Tableau\"] --> AZ[(\"Azure + ADF\")]\n  AWS --> OPS[\"DataOps\"]\n  AZ --> RPT[\"Enterprise Reporting\\n20,000+ users\"]\n  OPS --> SNOW[\"ServiceNow\"]"
+      "process_flow": "flowchart LR\n  CDH[\"Cloudera<br/>On-Prem\"] --> AWS[(\"AWS Data Platform\")]\n  TAB[\"Tableau\"] --> AZ[(\"Azure + ADF\")]\n  AWS --> OPS[\"DataOps\"]\n  AZ --> RPT[\"Enterprise Reporting<br/>20,000+ users\"]\n  OPS --> SNOW[\"ServiceNow\"]"
     },
     {
       "slug": "profusion-systems",
@@ -234,7 +234,7 @@
         "Improved customer satisfaction (C-SAT) +25%"
       ],
       "portfolio_tags": ["Enterprise SaaS", "Agile Transformation", "Loan Management", "BI", "Migration"],
-      "process_flow": "flowchart LR\n  LEGACY[\"Loan Platform\"] --> SAAS[(\"SaaS Migration\\n2TB+\")]\n  SAAS --> BI[\"BI Platforms\"]\n  AGILE[\"Agile Transformation\"] --> DELIV[\"Delivery\\n100+ epics\"]\n  DELIV --> SAAS"
+      "process_flow": "flowchart LR\n  LEGACY[\"Loan Platform\"] --> SAAS[(\"SaaS Migration<br/>2TB+\")]\n  SAAS --> BI[\"BI Platforms\"]\n  AGILE[\"Agile Transformation\"] --> DELIV[\"Delivery<br/>100+ epics\"]\n  DELIV --> SAAS"
     },
     {
       "slug": "mapsted",
@@ -301,7 +301,7 @@
         "Improved ROI 18%"
       ],
       "portfolio_tags": ["AI/ML", "Geospatial AI", "R&D Delivery", "AWS", "Azure"],
-      "process_flow": "flowchart LR\n  RND[\"AI / R&D\\nIndoor Positioning\"] --> ML[\"ML Products\"]\n  ML --> CLOUD[(\"AWS / Azure\")]\n  CLOUD --> DEPLOY[\"Deployment\\n+40% frequency\"]\n  DEPLOY --> MILE[\"Milestones\\n95% achieved\"]"
+      "process_flow": "flowchart LR\n  RND[\"AI / R&D<br/>Indoor Positioning\"] --> ML[\"ML Products\"]\n  ML --> CLOUD[(\"AWS / Azure\")]\n  CLOUD --> DEPLOY[\"Deployment<br/>+40% frequency\"]\n  DEPLOY --> MILE[\"Milestones<br/>95% achieved\"]"
     },
     {
       "slug": "soda-in-mind",
@@ -374,7 +374,7 @@
         "Led a 20-person delivery team"
       ],
       "portfolio_tags": ["SaaS Delivery", "Agile", "ITIL", "Automation"],
-      "process_flow": "flowchart LR\n  INTAKE[\"Project Intake\\n17+ projects\"] --> AGILE[\"Agile Delivery\"]\n  AGILE --> OPS[\"ITIL Service Mgmt\"]\n  OPS --> AUTO[\"Automation\\n15 hrs/week saved\"]\n  AUTO --> OPS"
+      "process_flow": "flowchart LR\n  INTAKE[\"Project Intake<br/>17+ projects\"] --> AGILE[\"Agile Delivery\"]\n  AGILE --> OPS[\"ITIL Service Mgmt\"]\n  OPS --> AUTO[\"Automation<br/>15 hrs/week saved\"]\n  AUTO --> OPS"
     },
     {
       "slug": "wns-global-services",
@@ -447,7 +447,7 @@
         "Brought incident response under 2 hours"
       ],
       "portfolio_tags": ["Operations Automation", "Linux", "AWS Monitoring", "Security"],
-      "process_flow": "flowchart LR\n  SRV[\"Linux Operations\"] --> AUTO[\"Automation\\n20 hrs/month\"]\n  SRV --> MON[\"AWS Monitoring\"]\n  MON --> IR[\"Incident Response\\n< 2 hours\"]\n  SRV --> SEC[\"Security Hardening\\n25–30%\"]"
+      "process_flow": "flowchart LR\n  SRV[\"Linux Operations\"] --> AUTO[\"Automation<br/>20 hrs/month\"]\n  SRV --> MON[\"AWS Monitoring\"]\n  MON --> IR[\"Incident Response<br/>< 2 hours\"]\n  SRV --> SEC[\"Security Hardening<br/>25–30%\"]"
     }
   ]
 }

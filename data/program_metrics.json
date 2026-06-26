@@ -43,7 +43,7 @@
   "dependencies": [
     { "from": "Eval Framework v1", "on": "Observability v2", "status": "satisfied" },
     { "from": "EU Region Rollout", "on": "Infra EU VPC", "status": "pending" },
-    { "from": "Flow Builder GA", "on": "Agent Orchestrator v4.8", "status": "satisfied" },
+    { "from": "Flow Builder GA", "on": "Agent Orchestrator v3.0", "status": "satisfied" },
     { "from": "SOC2 Type II", "on": "Guardrail audit logs", "status": "in_progress" }
   ],
   "teamCapacity": [

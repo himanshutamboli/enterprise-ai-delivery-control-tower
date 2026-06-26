@@ -5,6 +5,9 @@
 ## 2026-06-25
 | Change | Files affected | Reason |
 |---|---|---|
+| Brand favicon (hexagon) + line-icon set; replaced unicode glyphs in header/sidebar/module cards with SVG icons | `app/icon.svg`, `components/icons.tsx`, `SiteHeader`, `Sidebar`, `app/page.tsx` | Real logo instead of globe; advanced icons |
+| Applied v3.x version scheme to DevOps/DORA (env v3.0/v3.1-rc1) + Program dependency → v3.0 | `data/devops_metrics.json`, `data/program_metrics.json` | Version consistency (was missed) |
+| Fixed experience process-flow diagrams (`\n`→`<br/>` label breaks) | `data/resume.json` | Mermaid labels rendered literal `\n` |
 | Added ⌘K command palette (global, keyboard + header/sidebar/mobile-nav triggers, 23 destinations, filter + keyboard nav) | `components/CommandPalette.tsx`, `app/layout.tsx`, `components/layout/{SiteHeader,Sidebar,MobileNav}.tsx` | Standout interactive navigation |
 | Count-up KPI animation + hover sparkline + click-to-drill (scroll to chart + highlight) | `components/ui/KpiCard.tsx`, `components/ui/Panel.tsx` (id prop), `app/control-tower/page.tsx` (panel ids + KPI targets) | Interactive KPI UX |
 | Scroll-reveal for below-fold panels | `components/ScrollReveal.tsx`, `app/control-tower/layout.tsx`, `app/globals.css` | Motion polish (reduced-motion aware) |

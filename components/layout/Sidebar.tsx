@@ -2,13 +2,32 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import {
+  LogoIcon,
+  ExecutiveIcon,
+  ObservabilityIcon,
+  QaIcon,
+  DevOpsIcon,
+  ProgramIcon,
+  ExperienceIcon,
+  CaseStudiesIcon,
+  SystemDesignIcon,
+  HomeIcon,
+} from '@/components/icons';
 
 const NAV = [
-  { href: '/control-tower', label: 'Executive', icon: '◫', exact: true },
-  { href: '/control-tower/observability', label: 'AI Observability', icon: '◉' },
-  { href: '/control-tower/qa', label: 'QA Governance', icon: '✓' },
-  { href: '/control-tower/devops', label: 'DevOps / DORA', icon: '⟳' },
-  { href: '/control-tower/program', label: 'Program Health', icon: '◆' },
+  { href: '/control-tower', label: 'Executive', icon: ExecutiveIcon, exact: true },
+  { href: '/control-tower/observability', label: 'AI Observability', icon: ObservabilityIcon },
+  { href: '/control-tower/qa', label: 'QA Governance', icon: QaIcon },
+  { href: '/control-tower/devops', label: 'DevOps / DORA', icon: DevOpsIcon },
+  { href: '/control-tower/program', label: 'Program Health', icon: ProgramIcon },
+];
+
+const PORTFOLIO = [
+  { href: '/experience', label: 'Experience', icon: ExperienceIcon },
+  { href: '/case-studies', label: 'Case Studies', icon: CaseStudiesIcon },
+  { href: '/system-design', label: 'System Design', icon: SystemDesignIcon },
+  { href: '/', label: 'Home / About', icon: HomeIcon },
 ];
 
 export default function Sidebar() {
@@ -19,7 +38,9 @@ export default function Sidebar() {
   return (
     <aside className="hidden w-60 shrink-0 flex-col border-r border-border bg-surface/60 lg:flex">
       <div className="flex h-16 items-center gap-2.5 border-b border-border px-5">
-        <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand/15 text-brand">▲</span>
+        <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand/15 text-brand-soft">
+          <LogoIcon className="h-[18px] w-[18px]" />
+        </span>
         <div className="leading-tight">
           <div className="text-sm font-semibold text-white">Control Tower</div>
           <div className="text-[11px] text-muted">AI Delivery Ops</div>
@@ -41,12 +62,8 @@ export default function Sidebar() {
         {NAV.map((item) => {
           const active = item.exact ? path === item.href : path.startsWith(item.href);
           return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`nav-link ${active ? 'nav-link-active' : ''}`}
-            >
-              <span className="w-4 text-center text-base text-brand-soft">{item.icon}</span>
+            <Link key={item.href} href={item.href} className={`nav-link ${active ? 'nav-link-active' : ''}`}>
+              <item.icon className="h-[18px] w-[18px] shrink-0 text-brand-soft" />
               {item.label}
             </Link>
           );
@@ -55,22 +72,12 @@ export default function Sidebar() {
         <div className="px-3 pb-1 pt-5 text-[10px] font-semibold uppercase tracking-wider text-muted">
           Portfolio
         </div>
-        <Link href="/experience" className="nav-link">
-          <span className="w-4 text-center text-base text-brand-soft">❘</span>
-          Experience
-        </Link>
-        <Link href="/case-studies" className="nav-link">
-          <span className="w-4 text-center text-base text-brand-soft">▤</span>
-          Case Studies
-        </Link>
-        <Link href="/system-design" className="nav-link">
-          <span className="w-4 text-center text-base text-brand-soft">⌗</span>
-          System Design
-        </Link>
-        <Link href="/" className="nav-link">
-          <span className="w-4 text-center text-base text-brand-soft">←</span>
-          Home / About
-        </Link>
+        {PORTFOLIO.map((item) => (
+          <Link key={item.href} href={item.href} className="nav-link">
+            <item.icon className="h-[18px] w-[18px] shrink-0 text-brand-soft" />
+            {item.label}
+          </Link>
+        ))}
       </nav>
 
       <div className="border-t border-border p-4 text-[11px] text-muted">

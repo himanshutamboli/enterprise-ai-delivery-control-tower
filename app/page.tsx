@@ -1,12 +1,13 @@
 import Link from 'next/link';
 import SiteHeader from '@/components/layout/SiteHeader';
+import { ExecutiveIcon, ObservabilityIcon, QaIcon, DevOpsIcon, ProgramIcon } from '@/components/icons';
 
 const MODULES = [
-  { href: '/control-tower', title: 'Executive Dashboard', desc: 'Program-level KPIs: active agents, request volume, success rate, unit economics, release health.', icon: '◫' },
-  { href: '/control-tower/observability', title: 'AI Observability', desc: 'Per-agent traces, latency percentiles, token cost, failure root-cause, hallucination scoring.', icon: '◉' },
-  { href: '/control-tower/qa', title: 'QA Governance', desc: 'Test pass rates, coverage, eval regressions, escaped defects, release-readiness gates.', icon: '✓' },
-  { href: '/control-tower/devops', title: 'DevOps / DORA', desc: 'Deploy frequency, lead time, MTTR, change-failure rate, pipeline & environment health.', icon: '⟳' },
-  { href: '/control-tower/program', title: 'Program Health', desc: 'Budget burn, milestones, risk register, dependencies, team capacity — the TPM cockpit.', icon: '◆' },
+  { href: '/control-tower', title: 'Executive Dashboard', desc: 'Program-level KPIs: active agents, request volume, success rate, unit economics, release health.', icon: ExecutiveIcon },
+  { href: '/control-tower/observability', title: 'AI Observability', desc: 'Per-agent traces, latency percentiles, token cost, failure root-cause, hallucination scoring.', icon: ObservabilityIcon },
+  { href: '/control-tower/qa', title: 'QA Governance', desc: 'Test pass rates, coverage, eval regressions, escaped defects, release-readiness gates.', icon: QaIcon },
+  { href: '/control-tower/devops', title: 'DevOps / DORA', desc: 'Deploy frequency, lead time, MTTR, change-failure rate, pipeline & environment health.', icon: DevOpsIcon },
+  { href: '/control-tower/program', title: 'Program Health', desc: 'Budget burn, milestones, risk register, dependencies, team capacity — the TPM cockpit.', icon: ProgramIcon },
 ];
 
 const SKILLS = [
@@ -90,7 +91,9 @@ export default function Home() {
               className="panel group panel-pad transition-colors hover:border-border-soft"
             >
               <div className="flex items-center gap-3">
-                <span className="grid h-9 w-9 place-items-center rounded-lg bg-brand/15 text-lg text-brand-soft">{m.icon}</span>
+                <span className="grid h-9 w-9 place-items-center rounded-lg bg-brand/15 text-brand-soft">
+                  <m.icon className="h-5 w-5" />
+                </span>
                 <h3 className="font-semibold text-white">{m.title}</h3>
               </div>
               <p className="mt-3 text-sm text-text-soft">{m.desc}</p>

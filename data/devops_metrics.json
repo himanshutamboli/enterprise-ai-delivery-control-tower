@@ -36,8 +36,8 @@
     { "stage": "Promote", "avgDurationMin": 2.1, "successRate": 99.8 }
   ],
   "environments": [
-    { "name": "production", "version": "v4.8.0", "health": "healthy", "uptime": 99.98 },
-    { "name": "staging", "version": "v4.8.1-rc1", "health": "healthy", "uptime": 99.91 },
-    { "name": "canary", "version": "v4.8.1-rc1", "health": "degraded", "uptime": 99.62 }
+    { "name": "production", "version": "v3.0", "health": "healthy", "uptime": 99.98 },
+    { "name": "staging", "version": "v3.1-rc1", "health": "healthy", "uptime": 99.91 },
+    { "name": "canary", "version": "v3.1-rc1", "health": "degraded", "uptime": 99.62 }
   ]
 }

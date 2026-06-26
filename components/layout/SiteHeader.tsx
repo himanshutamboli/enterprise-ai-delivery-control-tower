@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { LogoIcon } from '@/components/icons';
 
 const LINKS = [
   { href: '/', label: 'Home', exact: true },
@@ -20,7 +21,9 @@ export default function SiteHeader() {
     <header className="sticky top-0 z-20 border-b border-border bg-canvas/80 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-5 py-3 md:px-8">
         <Link href="/" className="flex shrink-0 items-center gap-2.5">
-          <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-brand/15 text-brand">▲</span>
+          <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-brand/15 text-brand-soft">
+            <LogoIcon className="h-[18px] w-[18px]" />
+          </span>
           {/* Long brand label hidden on the smallest screens so the nav has room. */}
           <span className="hidden text-sm font-semibold text-white sm:block">AI Delivery Control Tower</span>
         </Link>
