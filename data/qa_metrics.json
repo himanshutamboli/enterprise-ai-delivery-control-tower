@@ -1,11 +1,11 @@
 {
   "meta": {
     "program": "ZBrain Enterprise AI Platform",
-    "release": "v4.8.0",
+    "release": "v3.0",
     "lastUpdated": "2026-06-25T08:00:00Z"
   },
   "kpis": {
-    "testCases": { "value": 3284, "deltaPct": 6.1, "trend": "up" },
+    "testCases": { "value": 668, "deltaPct": 6.1, "trend": "up" },
     "passRate": { "value": 96.4, "deltaPct": 1.2, "trend": "up", "unit": "%" },
     "regressionFailures": { "value": 11, "deltaPct": -31.0, "trend": "down" },
     "escapedDefects": { "value": 2, "deltaPct": -50.0, "trend": "down" },
@@ -13,22 +13,20 @@
     "testCoverage": { "value": 84.6, "deltaPct": 2.3, "trend": "up", "unit": "%" }
   },
   "suites": [
-    { "name": "Agent Behavior (E2E)", "total": 642, "passed": 618, "failed": 18, "skipped": 6, "coverage": 81 },
-    { "name": "RAG Accuracy / Grounding", "total": 418, "passed": 402, "failed": 12, "skipped": 4, "coverage": 88 },
-    { "name": "Guardrail & Safety", "total": 386, "passed": 384, "failed": 1, "skipped": 1, "coverage": 93 },
-    { "name": "Flow Builder Integration", "total": 524, "passed": 498, "failed": 20, "skipped": 6, "coverage": 79 },
-    { "name": "API Contract", "total": 612, "passed": 601, "failed": 8, "skipped": 3, "coverage": 91 },
-    { "name": "Performance / Load", "total": 188, "passed": 176, "failed": 9, "skipped": 3, "coverage": 72 },
-    { "name": "Eval Regression (LLM-as-judge)", "total": 514, "passed": 487, "failed": 21, "skipped": 6, "coverage": 86 }
+    { "name": "Agent Behavior (E2E)", "total": 131, "passed": 126, "failed": 4, "skipped": 1, "coverage": 81 },
+    { "name": "RAG Accuracy / Grounding", "total": 85, "passed": 82, "failed": 2, "skipped": 1, "coverage": 88 },
+    { "name": "Guardrail & Safety", "total": 79, "passed": 78, "failed": 1, "skipped": 0, "coverage": 93 },
+    { "name": "Flow Builder Integration", "total": 107, "passed": 101, "failed": 5, "skipped": 1, "coverage": 79 },
+    { "name": "API Contract", "total": 124, "passed": 122, "failed": 2, "skipped": 0, "coverage": 91 },
+    { "name": "Performance / Load", "total": 38, "passed": 35, "failed": 2, "skipped": 1, "coverage": 72 },
+    { "name": "Eval Regression (LLM-as-judge)", "total": 104, "passed": 98, "failed": 5, "skipped": 1, "coverage": 86 }
   ],
   "passRateTrend": [
-    { "build": "v4.7.0", "passRate": 93.1, "coverage": 80.2 },
-    { "build": "v4.7.1", "passRate": 94.0, "coverage": 81.0 },
-    { "build": "v4.7.2", "passRate": 93.6, "coverage": 81.4 },
-    { "build": "v4.7.3", "passRate": 95.2, "coverage": 82.6 },
-    { "build": "v4.8.0-rc1", "passRate": 94.8, "coverage": 83.1 },
-    { "build": "v4.8.0-rc2", "passRate": 95.9, "coverage": 84.0 },
-    { "build": "v4.8.0", "passRate": 96.4, "coverage": 84.6 }
+    { "build": "v1.0", "passRate": 88.0, "coverage": 70.0, "testCases": 40 },
+    { "build": "v1.5", "passRate": 91.2, "coverage": 76.0, "testCases": 165 },
+    { "build": "v2.0", "passRate": 93.0, "coverage": 80.0, "testCases": 340 },
+    { "build": "v2.5", "passRate": 95.1, "coverage": 82.8, "testCases": 520 },
+    { "build": "v3.0", "passRate": 96.4, "coverage": 84.6, "testCases": 668 }
   ],
   "defectsBySeverity": [
     { "severity": "Critical", "open": 0, "closed": 6 },

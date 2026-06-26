@@ -13,24 +13,24 @@
     "currency": "USD",
     "variancePct": -2.9,
     "burnTrend": [
-      { "month": "Jan", "planned": 104000, "actual": 98000 },
-      { "month": "Feb", "planned": 218000, "actual": 209000 },
-      { "month": "Mar", "planned": 352000, "actual": 341000 },
-      { "month": "Apr", "planned": 488000, "actual": 472000 },
-      { "month": "May", "planned": 624000, "actual": 601000 },
+      { "month": "Jan", "planned": 110000, "actual": 96000 },
+      { "month": "Feb", "planned": 220000, "actual": 242000 },
+      { "month": "Mar", "planned": 360000, "actual": 388000 },
+      { "month": "Apr", "planned": 500000, "actual": 449000 },
+      { "month": "May", "planned": 630000, "actual": 572000 },
       { "month": "Jun", "planned": 756000, "actual": 614000 }
     ]
   },
   "milestones": [
     { "name": "Multi-Agent GA", "due": "2026-03-15", "status": "done", "completion": 100 },
     { "name": "Observability v2", "due": "2026-05-30", "status": "done", "completion": 100 },
-    { "name": "Flow Builder GA", "due": "2026-07-10", "status": "on_track", "completion": 78 },
-    { "name": "Eval Framework v1", "due": "2026-07-25", "status": "at_risk", "completion": 54 },
-    { "name": "SOC2 Type II", "due": "2026-08-30", "status": "on_track", "completion": 41 },
-    { "name": "EU Region Rollout", "due": "2026-09-20", "status": "not_started", "completion": 8 }
+    { "name": "Flow Builder GA", "due": "2026-07-10", "status": "done", "completion": 100 },
+    { "name": "Eval Framework v1", "due": "2026-07-25", "status": "done", "completion": 100 },
+    { "name": "SOC2 Type II", "due": "2026-08-30", "status": "on_track", "completion": 58 },
+    { "name": "EU Region Rollout", "due": "2026-09-20", "status": "not_started", "completion": 12 }
   ],
   "risks": [
-    { "id": "R-01", "title": "Eval framework latency may slip GA", "severity": "high", "likelihood": "medium", "owner": "Platform Eng", "mitigation": "Parallelize judge calls; add caching layer", "status": "open" },
+    { "id": "R-01", "title": "Eval framework latency under production load", "severity": "medium", "likelihood": "medium", "owner": "Platform Eng", "mitigation": "Parallelized judge calls; caching layer in place — monitoring p95", "status": "monitoring" },
     { "id": "R-02", "title": "Model price increase impacts unit economics", "severity": "medium", "likelihood": "medium", "owner": "FinOps", "mitigation": "Route low-complexity tasks to Haiku tier", "status": "mitigating" },
     { "id": "R-03", "title": "EU data residency dependency on infra team", "severity": "high", "likelihood": "low", "owner": "Infra", "mitigation": "Pre-provision EU VPC; legal review in flight", "status": "open" },
     { "id": "R-04", "title": "Key SME availability during SOC2 audit", "severity": "low", "likelihood": "medium", "owner": "Security", "mitigation": "Cross-train backup reviewers", "status": "monitoring" }
@@ -47,10 +47,11 @@
     { "from": "SOC2 Type II", "on": "Guardrail audit logs", "status": "in_progress" }
   ],
   "teamCapacity": [
-    { "team": "Platform Eng", "allocated": 12, "capacity": 14, "utilizationPct": 86 },
-    { "team": "ML / Eval", "allocated": 8, "capacity": 8, "utilizationPct": 100 },
-    { "team": "SRE / DevOps", "allocated": 5, "capacity": 6, "utilizationPct": 83 },
-    { "team": "QA", "allocated": 6, "capacity": 7, "utilizationPct": 86 },
-    { "team": "Product / Design", "allocated": 4, "capacity": 5, "utilizationPct": 80 }
+    { "team": "Platform Eng", "allocated": 18, "capacity": 20, "utilizationPct": 90 },
+    { "team": "ML / Eval", "allocated": 12, "capacity": 13, "utilizationPct": 92 },
+    { "team": "SRE / DevOps", "allocated": 8, "capacity": 9, "utilizationPct": 89 },
+    { "team": "QA", "allocated": 9, "capacity": 10, "utilizationPct": 90 },
+    { "team": "Product / Design", "allocated": 7, "capacity": 8, "utilizationPct": 88 },
+    { "team": "Data / Analytics", "allocated": 8, "capacity": 9, "utilizationPct": 89 }
   ]
 }

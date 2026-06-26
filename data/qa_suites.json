@@ -25,7 +25,7 @@
       "environment": "Production",
       "envNote": "Production only",
       "description": "Critical-path subset — fast confidence check across modules.",
-      "lastRun": { "passRate": 69, "passed": 129, "failed": 58, "durationMin": 14, "version": "v4.8.0" },
+      "lastRun": { "passRate": 69, "passed": 129, "failed": 58, "durationMin": 14, "version": "v3.0" },
       "modules": [
         { "name": "Agents", "count": 56 },
         { "name": "Apps", "count": 10 },
@@ -53,7 +53,7 @@
       "environment": "Staging",
       "envNote": "Staging only",
       "description": "Full suite — every scenario across all 22 modules.",
-      "lastRun": { "passRate": 64, "passed": 427, "failed": 241, "durationMin": 52, "version": "v4.8.0" },
+      "lastRun": { "passRate": 64, "passed": 427, "failed": 241, "durationMin": 52, "version": "v3.0" },
       "modules": [
         { "name": "About ZBrain", "count": 1 },
         { "name": "Agents", "count": 152 },
@@ -87,7 +87,7 @@
       "environment": "Staging",
       "envNote": "Imported from Jira issues",
       "description": "Scenarios traced to and imported from Jira issues across modules.",
-      "lastRun": { "passRate": 66, "passed": 412, "failed": 213, "durationMin": 48, "version": "v4.8.0" },
+      "lastRun": { "passRate": 66, "passed": 412, "failed": 213, "durationMin": 48, "version": "v3.0" },
       "modules": []
     }
   ]

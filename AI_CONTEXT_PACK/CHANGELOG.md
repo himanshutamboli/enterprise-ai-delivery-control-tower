@@ -5,6 +5,10 @@
 ## 2026-06-25
 | Change | Files affected | Reason |
 |---|---|---|
+| Scaled dashboards to realistic figures (Daily Requests 1.3M→24.2K, Tokens 5.3B→97M, Avg Daily Cost→$490/$580 budget, Tool Calls 5.9M→76.4K) | `data/executive_metrics.json`, `data/agent_metrics.json` (incl. rescaled per-agent requests) | Headline numbers looked "huge"/unrealistic |
+| Added 1M/3M/6M time-range filters to 6 charts (Executive: requests, spend, tokens; Observability: latency, hallucination, failure breakdown) | `lib/timeseries.ts` (new, deterministic generator), `components/ui/RangeTabs.tsx` (new), `app/control-tower/page.tsx`, `app/control-tower/observability/page.tsx` | User requested range filters; trends now generated (removed static trend arrays) |
+| QA: Test Cases 3,284→668 + suites rescaled to ~668; trend relabeled v1.0→v3.0 with a Test Cases line (40→668); release tag → v3.0 | `data/qa_metrics.json`, `data/qa_suites.json`, `app/control-tower/qa/page.tsx` | Align with QA POC scenario count; versioned growth story |
+| Program: burn trend given spikes/under-budget months ($960K & $614K untouched); Milestones 2/6→4/6; Team Capacity → 62 people/6 teams; refreshed stale R-01 | `data/program_metrics.json`, `app/control-tower/program/page.tsx` | Realism + reflect 60+ org |
 | Generated full 16-file AI continuity system | `AI_CONTEXT_PACK/*` | Portable transfer to any new AI session/platform |
 | Hardened `.gitignore` (`.env.*`, `credentials/`, `*.pem`; earlier `*.key`, `secrets/`, `PRIVATE_PROFILE.md`, `.claude/settings.local.json`) | `.gitignore` | Security rules — never commit secrets/PII |
 | Built QA Test-Suite POC inside QA Governance (tabbed, env scoping, simulated Run, 22-module grid) | `app/control-tower/qa/page.tsx`, `components/qa/TestSuitesView.tsx`, `data/qa_suites.json` | Showcase the owner's real QA automation POC (read-only demo) |

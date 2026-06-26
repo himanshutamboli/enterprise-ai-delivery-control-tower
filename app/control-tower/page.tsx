@@ -1,5 +1,6 @@
 'use client';
 
+import { useMemo, useState } from 'react';
 import {
   Area,
   AreaChart,
@@ -18,15 +19,45 @@ import {
 import Topbar from '@/components/layout/Topbar';
 import Panel from '@/components/ui/Panel';
 import KpiCard from '@/components/ui/KpiCard';
+import RangeTabs from '@/components/ui/RangeTabs';
 import { axisProps, ChartTooltip, gridProps } from '@/components/charts/ChartKit';
-import { compactNumber, currency, fullNumber, palette, percent, shortDate } from '@/lib/format';
+import { compactNumber, currency, fullNumber, palette, percent } from '@/lib/format';
+import { buildSeries, type RangeKey } from '@/lib/timeseries';
 import data from '@/data/executive_metrics.json';
 
 const k = data.kpis;
-// True average of the daily cost series (was previously hardcoded to the latest day).
-const avgDailyCost = Math.round(data.costTrend.reduce((s, d) => s + d.cost, 0) / data.costTrend.length);
+const DAILY_BUDGET = 580; // USD/day operational budget
 
 export default function ExecutiveDashboard() {
+  const [reqRange, setReqRange] = useState<RangeKey>('1m');
+  const [costRange, setCostRange] = useState<RangeKey>('1m');
+  const [tokRange, setTokRange] = useState<RangeKey>('1m');
+
+  const requests = useMemo(
+    () =>
+      buildSeries(reqRange, 101, [
+        { key: 'success', base: 23900, trend: 1.14, vol: 0.08 },
+        { key: 'failed', base: 300, vol: 0.28, spikeP: 0.12, spikeMag: 0.9, floor: 60 },
+      ]),
+    [reqRange]
+  );
+  const costSeries = useMemo(
+    () =>
+      buildSeries(costRange, 202, [
+        { key: 'cost', base: 470, trend: 1.1, vol: 0.13, spikeP: 0.12, spikeMag: 0.45 },
+        { key: 'budget', base: DAILY_BUDGET, vol: 0 },
+      ]),
+    [costRange]
+  );
+  const tokens = useMemo(
+    () =>
+      buildSeries(tokRange, 303, [
+        { key: 'input', base: 70000000, trend: 1.12, vol: 0.12 },
+        { key: 'output', base: 27000000, trend: 1.12, vol: 0.12 },
+      ]),
+    [tokRange]
+  );
+
   return (
     <div className="pb-12">
       <Topbar
@@ -45,14 +76,19 @@ export default function ExecutiveDashboard() {
           <KpiCard label="Token Consumption" value={`${compactNumber(k.totalTokens.value)}`} deltaPct={k.totalTokens.deltaPct} footnote="tokens / day" />
           <KpiCard label="Prod Incidents" value={fullNumber(k.productionIncidents.value)} deltaPct={k.productionIncidents.deltaPct} invertDelta footnote="last 7d" />
           <KpiCard label="Release Health" value={percent(k.releaseHealth.value, 0)} deltaPct={k.releaseHealth.deltaPct} />
-          <KpiCard label="Avg Daily Cost" value={currency(avgDailyCost, { compact: true })} deltaPct={-1.8} invertDelta footnote="vs $28K budget" />
+          <KpiCard label="Avg Daily Cost" value={currency(490, { compact: true })} deltaPct={-1.8} invertDelta footnote={`vs $${DAILY_BUDGET} budget`} />
         </div>
 
         {/* Primary trends */}
         <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
-          <Panel title="Request Volume & Reliability" subtitle="Daily requests vs failures · last 14 days" className="xl:col-span-2">
+          <Panel
+            title="Request Volume & Reliability"
+            subtitle="Daily requests vs failures"
+            className="xl:col-span-2"
+            action={<RangeTabs value={reqRange} onChange={setReqRange} />}
+          >
             <ResponsiveContainer width="100%" height={280}>
-              <AreaChart data={data.requestsTrend} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
+              <AreaChart data={requests} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
                 <defs>
                   <linearGradient id="gReq" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stopColor={palette.brand} stopOpacity={0.4} />
@@ -60,9 +96,9 @@ export default function ExecutiveDashboard() {
                   </linearGradient>
                 </defs>
                 <CartesianGrid {...gridProps} />
-                <XAxis dataKey="date" {...axisProps} tickFormatter={shortDate} />
+                <XAxis dataKey="label" {...axisProps} />
                 <YAxis {...axisProps} tickFormatter={(v) => compactNumber(v as number)} width={48} />
-                <Tooltip content={<ChartTooltip valueFormatter={(v) => fullNumber(v)} labelFormatter={shortDate} />} />
+                <Tooltip content={<ChartTooltip valueFormatter={(v) => fullNumber(v)} />} />
                 <Area type="monotone" dataKey="success" name="Successful" stroke={palette.brand} fill="url(#gReq)" strokeWidth={2} />
                 <Area type="monotone" dataKey="failed" name="Failed" stroke={palette.danger} fill="transparent" strokeWidth={2} />
               </AreaChart>
@@ -96,9 +132,13 @@ export default function ExecutiveDashboard() {
 
         {/* Cost & tokens */}
         <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
-          <Panel title="Daily Spend vs Budget" subtitle="Inference + infra cost · USD">
+          <Panel
+            title="Daily Spend vs Budget"
+            subtitle="Inference + infra cost · USD"
+            action={<RangeTabs value={costRange} onChange={setCostRange} />}
+          >
             <ResponsiveContainer width="100%" height={260}>
-              <AreaChart data={data.costTrend} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
+              <AreaChart data={costSeries} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
                 <defs>
                   <linearGradient id="gCost" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stopColor={palette.accent} stopOpacity={0.35} />
@@ -106,22 +146,26 @@ export default function ExecutiveDashboard() {
                   </linearGradient>
                 </defs>
                 <CartesianGrid {...gridProps} />
-                <XAxis dataKey="date" {...axisProps} tickFormatter={shortDate} />
+                <XAxis dataKey="label" {...axisProps} />
                 <YAxis {...axisProps} tickFormatter={(v) => currency(v as number, { compact: true })} width={48} />
-                <Tooltip content={<ChartTooltip valueFormatter={(v) => currency(v)} labelFormatter={shortDate} />} />
+                <Tooltip content={<ChartTooltip valueFormatter={(v) => currency(v)} />} />
                 <Area type="monotone" dataKey="cost" name="Actual cost" stroke={palette.accent} fill="url(#gCost)" strokeWidth={2} />
                 <Line type="monotone" dataKey="budget" name="Budget" stroke={palette.warning} strokeWidth={1.5} strokeDasharray="5 4" dot={false} />
               </AreaChart>
             </ResponsiveContainer>
           </Panel>
 
-          <Panel title="Token Consumption" subtitle="Input vs output tokens · last 7 days">
+          <Panel
+            title="Token Consumption"
+            subtitle="Input vs output tokens"
+            action={<RangeTabs value={tokRange} onChange={setTokRange} />}
+          >
             <ResponsiveContainer width="100%" height={260}>
-              <BarChart data={data.tokenConsumption} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
+              <BarChart data={tokens} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
                 <CartesianGrid {...gridProps} />
-                <XAxis dataKey="date" {...axisProps} tickFormatter={shortDate} />
+                <XAxis dataKey="label" {...axisProps} />
                 <YAxis {...axisProps} tickFormatter={(v) => compactNumber(v as number)} width={48} />
-                <Tooltip content={<ChartTooltip valueFormatter={(v) => fullNumber(v)} labelFormatter={shortDate} />} cursor={{ fill: 'rgba(255,255,255,0.03)' }} />
+                <Tooltip content={<ChartTooltip valueFormatter={(v) => fullNumber(v)} />} cursor={{ fill: 'rgba(255,255,255,0.03)' }} />
                 <Bar dataKey="input" name="Input" stackId="t" fill={palette.brand} radius={[0, 0, 0, 0]} />
                 <Bar dataKey="output" name="Output" stackId="t" fill={palette.accent} radius={[3, 3, 0, 0]} />
               </BarChart>

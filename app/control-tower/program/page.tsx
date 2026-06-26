@@ -28,6 +28,7 @@ function severityDot(sev: string) {
 export default function ProgramDashboard() {
   const spentPct = (b.spent / b.approved) * 100;
   const doneMilestones = data.milestones.filter((m) => m.status === 'done').length;
+  const teamAllocated = data.teamCapacity.reduce((sum, t) => sum + t.allocated, 0);
 
   return (
     <div className="pb-12">
@@ -66,7 +67,7 @@ export default function ProgramDashboard() {
             </ResponsiveContainer>
           </Panel>
 
-          <Panel title="Team Capacity" subtitle="Allocation vs available">
+          <Panel title="Team Capacity" subtitle={`${teamAllocated} people across ${data.teamCapacity.length} teams`}>
             <ul className="space-y-3">
               {data.teamCapacity.map((t) => (
                 <li key={t.team}>

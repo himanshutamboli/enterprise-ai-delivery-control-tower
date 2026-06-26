@@ -17,7 +17,7 @@ import Panel from '@/components/ui/Panel';
 import KpiCard from '@/components/ui/KpiCard';
 import StatusBadge from '@/components/ui/StatusBadge';
 import { axisProps, ChartTooltip, gridProps } from '@/components/charts/ChartKit';
-import { fullNumber, palette, percent } from '@/lib/format';
+import { compactNumber, fullNumber, palette, percent } from '@/lib/format';
 import data from '@/data/qa_metrics.json';
 import TestSuitesView from '@/components/qa/TestSuitesView';
 
@@ -75,15 +75,17 @@ export default function QaDashboard() {
         </div>
 
         <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
-          <Panel title="Pass Rate & Coverage Trend" subtitle="Across recent builds" className="xl:col-span-2">
+          <Panel title="Pass Rate, Coverage & Test Cases" subtitle="Growth from v1.0 → v3.0" className="xl:col-span-2">
             <ResponsiveContainer width="100%" height={280}>
               <LineChart data={data.passRateTrend} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
                 <CartesianGrid {...gridProps} />
                 <XAxis dataKey="build" {...axisProps} />
-                <YAxis {...axisProps} domain={[78, 100]} tickFormatter={(v) => `${v}%`} width={42} />
-                <Tooltip content={<ChartTooltip valueFormatter={(v) => percent(v)} />} />
-                <Line type="monotone" dataKey="passRate" name="Pass rate" stroke={palette.success} strokeWidth={2} dot={{ r: 3 }} />
-                <Line type="monotone" dataKey="coverage" name="Coverage" stroke={palette.brand} strokeWidth={2} strokeDasharray="5 4" dot={{ r: 2 }} />
+                <YAxis yAxisId="pct" {...axisProps} domain={[60, 100]} tickFormatter={(v) => `${v}%`} width={42} />
+                <YAxis yAxisId="tc" orientation="right" {...axisProps} domain={[0, 720]} tickFormatter={(v) => compactNumber(v as number)} width={40} />
+                <Tooltip content={<ChartTooltip valueFormatter={(v, name) => (name === 'Test cases' ? fullNumber(v) : percent(v))} />} />
+                <Line yAxisId="pct" type="monotone" dataKey="passRate" name="Pass rate" stroke={palette.success} strokeWidth={2} dot={{ r: 3 }} />
+                <Line yAxisId="pct" type="monotone" dataKey="coverage" name="Coverage" stroke={palette.brand} strokeWidth={2} strokeDasharray="5 4" dot={{ r: 2 }} />
+                <Line yAxisId="tc" type="monotone" dataKey="testCases" name="Test cases" stroke={palette.accent} strokeWidth={2} dot={{ r: 3 }} />
               </LineChart>
             </ResponsiveContainer>
           </Panel>
