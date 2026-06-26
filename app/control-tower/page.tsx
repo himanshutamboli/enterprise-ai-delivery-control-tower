@@ -70,18 +70,19 @@ export default function ExecutiveDashboard() {
         {/* KPI strip */}
         <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
           <KpiCard label="Active Agents" value={fullNumber(k.activeAgents.value)} deltaPct={k.activeAgents.deltaPct} footnote="in production" />
-          <KpiCard label="Daily Requests" value={compactNumber(k.dailyRequests.value)} deltaPct={k.dailyRequests.deltaPct} footnote="vs prior wk" />
+          <KpiCard label="Daily Requests" value={compactNumber(k.dailyRequests.value)} deltaPct={k.dailyRequests.deltaPct} footnote="vs prior wk" targetId="#chart-requests" spark={[18, 20, 19, 22, 23, 24]} />
           <KpiCard label="Success Rate" value={percent(k.successRate.value)} deltaPct={k.successRate.deltaPct} />
           <KpiCard label="Cost / Request" value={currency(k.costPerRequest.value, { digits: 4 })} deltaPct={k.costPerRequest.deltaPct} invertDelta footnote="optimized" />
-          <KpiCard label="Token Consumption" value={`${compactNumber(k.totalTokens.value)}`} deltaPct={k.totalTokens.deltaPct} footnote="tokens / day" />
+          <KpiCard label="Token Consumption" value={`${compactNumber(k.totalTokens.value)}`} deltaPct={k.totalTokens.deltaPct} footnote="tokens / day" targetId="#chart-tokens" spark={[80, 79, 92, 95, 97]} />
           <KpiCard label="Prod Incidents" value={fullNumber(k.productionIncidents.value)} deltaPct={k.productionIncidents.deltaPct} invertDelta footnote="last 7d" />
           <KpiCard label="Release Health" value={percent(k.releaseHealth.value, 0)} deltaPct={k.releaseHealth.deltaPct} />
-          <KpiCard label="Avg Daily Cost" value={currency(490, { compact: true })} deltaPct={-1.8} invertDelta footnote={`vs $${DAILY_BUDGET} budget`} />
+          <KpiCard label="Avg Daily Cost" value={currency(490, { compact: true })} deltaPct={-1.8} invertDelta footnote={`vs $${DAILY_BUDGET} budget`} targetId="#chart-cost" spark={[520, 500, 470, 455, 490]} />
         </div>
 
         {/* Primary trends */}
         <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
           <Panel
+            id="chart-requests"
             title="Request Volume & Reliability"
             subtitle="Daily requests vs failures"
             className="xl:col-span-2"
@@ -133,6 +134,7 @@ export default function ExecutiveDashboard() {
         {/* Cost & tokens */}
         <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
           <Panel
+            id="chart-cost"
             title="Daily Spend vs Budget"
             subtitle="Inference + infra cost · USD"
             action={<RangeTabs value={costRange} onChange={setCostRange} />}
@@ -156,6 +158,7 @@ export default function ExecutiveDashboard() {
           </Panel>
 
           <Panel
+            id="chart-tokens"
             title="Token Consumption"
             subtitle="Input vs output tokens"
             action={<RangeTabs value={tokRange} onChange={setTokRange} />}

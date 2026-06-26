@@ -5,6 +5,11 @@
 ## 2026-06-25
 | Change | Files affected | Reason |
 |---|---|---|
+| Added ⌘K command palette (global, keyboard + header/sidebar/mobile-nav triggers, 23 destinations, filter + keyboard nav) | `components/CommandPalette.tsx`, `app/layout.tsx`, `components/layout/{SiteHeader,Sidebar,MobileNav}.tsx` | Standout interactive navigation |
+| Count-up KPI animation + hover sparkline + click-to-drill (scroll to chart + highlight) | `components/ui/KpiCard.tsx`, `components/ui/Panel.tsx` (id prop), `app/control-tower/page.tsx` (panel ids + KPI targets) | Interactive KPI UX |
+| Scroll-reveal for below-fold panels | `components/ScrollReveal.tsx`, `app/control-tower/layout.tsx`, `app/globals.css` | Motion polish (reduced-motion aware) |
+| 4 new case studies (Loan Mgmt, Twilio→Marketo, NetSuite, Tableau→Power BI) + prev/next nav (last → System Design) | `lib/case-studies.ts`, `app/case-studies/[slug]/page.tsx` | Broaden delivery breadth; sequential browsing |
+| 4 new system-design diagrams matching the new case studies (now 9) | `lib/system-design.ts` | Architecture coverage |
 | Scaled dashboards to realistic figures (Daily Requests 1.3M→24.2K, Tokens 5.3B→97M, Avg Daily Cost→$490/$580 budget, Tool Calls 5.9M→76.4K) | `data/executive_metrics.json`, `data/agent_metrics.json` (incl. rescaled per-agent requests) | Headline numbers looked "huge"/unrealistic |
 | Added 1M/3M/6M time-range filters to 6 charts (Executive: requests, spend, tokens; Observability: latency, hallucination, failure breakdown) | `lib/timeseries.ts` (new, deterministic generator), `components/ui/RangeTabs.tsx` (new), `app/control-tower/page.tsx`, `app/control-tower/observability/page.tsx` | User requested range filters; trends now generated (removed static trend arrays) |
 | QA: Test Cases 3,284→668 + suites rescaled to ~668; trend relabeled v1.0→v3.0 with a Test Cases line (40→668); release tag → v3.0 | `data/qa_metrics.json`, `data/qa_suites.json`, `app/control-tower/qa/page.tsx` | Align with QA POC scenario count; versioned growth story |

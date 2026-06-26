@@ -456,6 +456,12 @@ A professional GitHub-hosted portfolio showcasing enterprise AI delivery leaders
 * `.gitignore` now excludes `PRIVATE_PROFILE.md`, `.env`, `secrets/`, `*.key`. Verified email domain appears only in `PRIVATE_PROFILE.md`.
 * NUANCE: `data/resume.json` + `data/profile.json` are committed site content → personal career data is inherently public on the deployed portfolio (by design). PRIVATE_PROFILE protects the consolidated doc + contact email, not the on-site career facts.
 
+## 2026-06-25 — Case studies expansion + interactive UI/UX
+
+* +4 case studies (Loan Mgmt, Twilio→Marketo, NetSuite, Tableau→Power BI) → 7 total; case-study prev/next nav (last → System Design). +4 system-design diagrams → 9 total. New case studies flagged illustrative (verify vs real projects).
+* Interactive layer: **⌘K command palette** (global; triggers in SiteHeader/Sidebar/MobileNav incl. mobile icon), **count-up KPIs**, **scroll-reveal** panels, **KPI drill-downs** (click→scroll+pulse, hover sparkline on Executive). New: `CommandPalette.tsx`, `ScrollReveal.tsx`, `RangeTabs` already existed; `KpiCard` now client w/ count-up; `Panel` gained `id`.
+* Verified responsive + interactive at 375 / 1440 / 1920: no overflow, palette opens/filters everywhere, drill + reveal work. Build clean: 26 static pages.
+
 ## 2026-06-25 — AI Continuity System (16-file pack)
 
 * Generated a full transfer system in `AI_CONTEXT_PACK/`: PROJECT_CONTINUITY_PACK (master), EXECUTIVE_BRIEF, PROJECT_RESTART_PROMPT, PROJECT_CONTEXT, ARCHITECTURE, FEATURES, DECISIONS, IMPLEMENTATION_HISTORY, ROADMAP, BACKLOG, KNOWN_ISSUES, DESIGN_SYSTEM, DEPLOYMENT, AI_INSTRUCTIONS, CHANGELOG, README. Lets any new AI session/platform resume with no chat history.

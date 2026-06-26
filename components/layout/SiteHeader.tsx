@@ -40,6 +40,15 @@ export default function SiteHeader() {
             );
           })}
         </nav>
+        <button
+          onClick={() => window.dispatchEvent(new Event('cmdk:open'))}
+          aria-label="Open command palette"
+          className="ml-1 flex shrink-0 items-center gap-1.5 rounded-lg border border-border bg-surface px-2.5 py-1.5 text-xs text-muted transition-colors hover:border-border-soft hover:text-white"
+        >
+          <span className="text-sm leading-none">⌕</span>
+          <span className="hidden sm:inline">Search</span>
+          <span className="hidden rounded border border-border px-1 text-[10px] sm:inline">⌘K</span>
+        </button>
       </div>
     </header>
   );

@@ -7,12 +7,13 @@ interface PanelProps {
   children: ReactNode;
   className?: string;
   bodyClassName?: string;
+  id?: string;
 }
 
 /** Standard dashboard panel: titled, bordered container used for every chart/table block. */
-export default function Panel({ title, subtitle, action, children, className = '', bodyClassName = '' }: PanelProps) {
+export default function Panel({ title, subtitle, action, children, className = '', bodyClassName = '', id }: PanelProps) {
   return (
-    <section className={`panel ${className}`}>
+    <section id={id} className={`panel scroll-mt-24 ${className}`}>
       {(title || action) && (
         <header className="flex items-start justify-between gap-3 border-b border-border px-5 py-3.5">
           <div>

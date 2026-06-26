@@ -17,8 +17,11 @@
 | Experience detail pages | ✅ | 9-section per-company case study (SSG, 6 slugs), prev/next sequence | ends → Education page |
 | Education / Certifications / Recognitions | ✅ | Dedicated page; grouped certs with auto-appearing certificate links | fs-existence check on `public/certificates/` |
 | Certificate hosting | ✅ | 5 PDFs served; link auto-appears when file present | Microsoft cert pending |
-| Case studies | ✅ | Index + 3 detail pages (ZBrain Observability, Flow Builder, Cloud Migration) | `lib/case-studies.ts`, inline Mermaid |
-| System design | ✅ | 5 Mermaid reference architectures w/ component lists | `lib/system-design.ts` |
+| Case studies | ✅ | Index + 7 detail pages (ZBrain Obs., Flow Builder, Cloud Migration, Loan Mgmt, Twilio→Marketo, NetSuite, Tableau→Power BI) + prev/next nav (last → System Design) | `lib/case-studies.ts`, inline Mermaid |
+| System design | ✅ | 9 Mermaid reference architectures w/ component lists | `lib/system-design.ts` |
+| ⌘K command palette | ✅ | Global keyboard + header/sidebar/mobile triggers; 23 destinations, filter + arrow/enter nav | `components/CommandPalette.tsx` |
+| Animated count-up KPIs + scroll-reveal | ✅ | KPI numbers ease up on load; below-fold panels fade/rise in (reduced-motion aware) | `KpiCard.tsx`, `ScrollReveal.tsx` |
+| Interactive KPI drill-downs | ✅ | Click a KPI → scroll to its chart + highlight; hover sparkline (Executive) | `KpiCard.tsx`, Executive page |
 | Responsive design | ✅ | Verified 375/768/1440/1920; tables scroll; sidebar↔mobile nav | no horizontal overflow |
 | Mermaid rendering | ✅ | Client renderer w/ graceful raw-text fallback | `components/Mermaid.tsx` |
 | Deploy workflow | ✅ | GitHub Actions → Pages, base-path auto-resolved, `.nojekyll` | `.github/workflows/deploy.yml` |

@@ -27,6 +27,14 @@ export default function Sidebar() {
       </div>
 
       <nav className="flex-1 space-y-1 p-3">
+        <button
+          onClick={() => window.dispatchEvent(new Event('cmdk:open'))}
+          aria-label="Open command palette"
+          className="mb-2 flex w-full items-center justify-between gap-2 rounded-lg border border-border bg-surface px-3 py-2 text-sm text-muted transition-colors hover:border-border-soft hover:text-white"
+        >
+          <span className="flex items-center gap-2"><span className="text-base">⌕</span> Search</span>
+          <span className="rounded border border-border px-1 text-[10px]">⌘K</span>
+        </button>
         <div className="px-3 pb-1 pt-2 text-[10px] font-semibold uppercase tracking-wider text-muted">
           Dashboards
         </div>

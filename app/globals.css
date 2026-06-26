@@ -55,3 +55,38 @@ body {
     @apply bg-surface-2 text-white shadow-[inset_2px_0_0_0_theme(colors.brand)];
   }
 }
+
+/* Scroll-reveal for below-the-fold panels (applied by ScrollReveal). */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* Highlight pulse when a KPI drills into its chart. */
+.kpi-pulse {
+  animation: kpiPulse 1.3s ease;
+}
+@keyframes kpiPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.55);
+  }
+  100% {
+    box-shadow: 0 0 0 10px rgba(99, 102, 241, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .kpi-pulse {
+    animation: none;
+  }
+}

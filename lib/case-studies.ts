@@ -260,6 +260,248 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
   },
+  {
+    slug: 'loan-management-platform',
+    title: 'Loan Management Platform Modernization',
+    subtitle: 'Re-platforming a monolithic lending system into scalable SaaS',
+    role: 'Technical Agile Project Manager',
+    timeline: '2019 – 2021 · 4 quarters',
+    domain: 'FinTech · Lending SaaS',
+    stack: ['Java / Spring', 'React', 'AWS', 'PostgreSQL', 'CI/CD', 'Jira'],
+    summary:
+      'A business-critical loan management platform shipped slowly and unpredictably off a monolith. I led the agile transformation and SaaS re-platforming — incremental releases, CI/CD, and a single backlog — lifting throughput while protecting a system that processes live lending operations daily.',
+    heroMetrics: [
+      { label: 'Sprint velocity', value: '+40%' },
+      { label: 'Epics delivered', value: '100+' },
+      { label: 'Data migrated', value: '2TB+' },
+      { label: 'Customer satisfaction', value: '+25%' },
+    ],
+    sections: [
+      {
+        heading: 'Problem',
+        paragraphs: [
+          'The lending platform was a monolith with six-week, big-bang releases. Velocity was low and unpredictable, defects escaped to production, and onboarding new enterprise customers meant risky, manual deployments.',
+        ],
+      },
+      {
+        heading: 'Product Strategy',
+        bullets: [
+          'Decompose the monolith into modular services behind a multi-tenant SaaS boundary.',
+          'Shift releases from six-week big-bangs to weekly increments with CI/CD.',
+          'Unify product + engineering on a single prioritized backlog and clear definition-of-done.',
+        ],
+      },
+      {
+        heading: 'Architecture',
+        paragraphs: ['Strangler-pattern modernization — services peel off the monolith while a CI/CD pipeline ships incrementally to the multi-tenant platform.'],
+        mermaid: `flowchart LR
+  MONO["Monolith<br/>Loan Platform"] --> SVC["Modular Services<br/>origination · servicing · billing"]
+  SVC --> SAAS[("Multi-Tenant SaaS")]
+  DEV["Teams"] --> CICD["CI/CD Pipeline"]
+  CICD --> SAAS
+  SAAS --> CUST["Enterprise Lenders"]`,
+      },
+      {
+        heading: 'Delivery Approach',
+        bullets: [
+          'Two-week sprints with flow metrics (velocity, cycle time) driving retrospectives.',
+          'Automated test + deploy gates before each incremental release.',
+          'Phased customer migration with parallel run and reconciliation.',
+        ],
+      },
+      {
+        heading: 'Results',
+        metrics: [
+          { label: 'Sprint velocity', value: '+40%', sub: 'over 3 quarters' },
+          { label: 'Release cadence', value: '6w → weekly', sub: 'incremental' },
+          { label: 'Escaped defects', value: '−45%', sub: 'post-CI/CD' },
+          { label: 'C-SAT', value: '+25%', sub: 'enterprise customers' },
+        ],
+      },
+      {
+        heading: 'Lessons Learned',
+        bullets: [
+          'Incremental release cadence de-risks everything downstream.',
+          'A single shared backlog ends the product-vs-engineering tug of war.',
+          'Velocity is an outcome of flow discipline, not a target to chase directly.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'twilio-marketo-migration',
+    title: 'Customer Engagement Migration — Twilio to Marketo',
+    subtitle: 'Consolidating messaging and marketing automation onto one stack',
+    role: 'Technical Program Manager',
+    timeline: '2 quarters',
+    domain: 'MarTech · Customer Engagement',
+    stack: ['Twilio', 'Marketo', 'REST / Webhooks', 'ETL', 'Segment'],
+    summary:
+      'Customer communications were split across Twilio messaging flows and disconnected campaign tools, fragmenting the customer view and slowing campaigns. I led the migration that consolidated engagement onto Marketo, mapping flows and journeys with a dual-run cutover and zero campaign downtime.',
+    heroMetrics: [
+      { label: 'Campaign launch time', value: '−50%' },
+      { label: 'Journeys migrated', value: '60+' },
+      { label: 'Deliverability', value: '+18%' },
+      { label: 'Campaign downtime', value: '0' },
+    ],
+    sections: [
+      {
+        heading: 'Problem',
+        paragraphs: [
+          'Messaging logic lived in Twilio while campaign orchestration lived elsewhere — no unified customer profile, duplicated audiences, and slow, error-prone campaign launches.',
+        ],
+      },
+      {
+        heading: 'Approach',
+        bullets: [
+          'Audited every Twilio flow and campaign; built a journey-by-journey mapping to Marketo programs.',
+          'Standardized a unified profile + consent model before migrating audiences.',
+          'Dual-ran critical journeys and reconciled sends before cutover.',
+        ],
+      },
+      {
+        heading: 'Architecture',
+        paragraphs: ['Flows and audiences are mapped through an ETL/normalization layer into Marketo programs, with webhooks preserving real-time triggers.'],
+        mermaid: `flowchart LR
+  TW["Twilio<br/>flows · audiences"] --> MAP["Mapping + ETL<br/>profile · consent"]
+  MAP --> MKTO[("Marketo<br/>Programs & Journeys")]
+  HOOK["Webhooks /<br/>Real-time triggers"] --> MKTO
+  MKTO --> CH["Email · SMS · Push"]`,
+      },
+      {
+        heading: 'Results',
+        metrics: [
+          { label: 'Campaign launch time', value: '−50%', sub: 'unified tooling' },
+          { label: 'Journeys migrated', value: '60+', sub: 'with parity checks' },
+          { label: 'Deliverability', value: '+18%', sub: 'cleaner audiences' },
+          { label: 'Downtime', value: '0', sub: 'dual-run cutover' },
+        ],
+      },
+      {
+        heading: 'Lessons Learned',
+        bullets: [
+          'Migrate the customer profile + consent model first; journeys follow cleanly.',
+          'Parity mapping per journey is the only safe basis for cutover.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'netsuite-implementation',
+    title: 'Enterprise ERP — NetSuite Implementation',
+    subtitle: 'Standardizing finance and operations on a single ERP',
+    role: 'Technical Program Manager',
+    timeline: '3 quarters',
+    domain: 'ERP · Finance Operations',
+    stack: ['NetSuite', 'SuiteScript', 'REST / SOAP', 'Data Migration', 'SSO'],
+    summary:
+      'Finance and operations ran on siloed systems and spreadsheets, with manual reconciliation and slow close cycles. I led the NetSuite implementation — phased rollout, data migration, and system integrations — to standardize processes and shorten the financial close.',
+    heroMetrics: [
+      { label: 'Month-end close', value: '−40%' },
+      { label: 'Systems consolidated', value: '5 → 1' },
+      { label: 'Manual reconciliation', value: '−60%' },
+      { label: 'Go-lives', value: 'on schedule' },
+    ],
+    sections: [
+      {
+        heading: 'Problem',
+        paragraphs: [
+          'Disconnected finance, billing, and inventory systems forced manual reconciliation and a long, error-prone month-end close with limited real-time visibility.',
+        ],
+      },
+      {
+        heading: 'Approach',
+        bullets: [
+          'Phased rollout by module (GL → AR/AP → inventory) to contain risk.',
+          'Mapped and migrated master + transactional data with validation and reconciliation.',
+          'Integrated upstream/downstream systems via REST/SOAP and SuiteScript automations.',
+        ],
+      },
+      {
+        heading: 'Architecture',
+        paragraphs: ['Source systems feed a migration + integration layer into NetSuite, with SuiteScript automations and SSO for governed access.'],
+        mermaid: `flowchart LR
+  SRC["Legacy Finance<br/>+ Billing + Inventory"] --> MIG["Migration +<br/>Integration Layer"]
+  MIG --> NS[("NetSuite ERP<br/>GL · AR/AP · Inventory")]
+  NS --> RPT["Reporting +<br/>Real-time Dashboards"]
+  SS["SuiteScript<br/>Automations"] --> NS`,
+      },
+      {
+        heading: 'Results',
+        metrics: [
+          { label: 'Month-end close', value: '−40%', sub: 'faster cycle' },
+          { label: 'Systems consolidated', value: '5 → 1', sub: 'single ERP' },
+          { label: 'Manual reconciliation', value: '−60%', sub: 'automated' },
+          { label: 'Rollout', value: 'on schedule', sub: 'phased go-lives' },
+        ],
+      },
+      {
+        heading: 'Lessons Learned',
+        bullets: [
+          'Phase ERP go-lives by module — a big-bang cutover is rarely worth the risk.',
+          'Data migration is the program; reconciliation gates protect the close.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'tableau-powerbi-migration',
+    title: 'BI Platform Migration — Tableau to Power BI',
+    subtitle: 'Migrating enterprise reporting with zero reporting downtime',
+    role: 'Technical Program Manager · Data',
+    timeline: '2 quarters',
+    domain: 'Data · Business Intelligence',
+    stack: ['Tableau', 'Power BI', 'Azure', 'DAX', 'ADF / ETL'],
+    summary:
+      'An enterprise reporting estate on Tableau needed to move to Power BI for cost and ecosystem fit, without disrupting the dashboards leadership relied on daily. I led the migration — inventory, parity mapping, rebuild, and parallel run — landing it with no reporting downtime.',
+    heroMetrics: [
+      { label: 'Dashboards migrated', value: '200+' },
+      { label: 'Licensing cost', value: '−35%' },
+      { label: 'Refresh time', value: '−30%' },
+      { label: 'Reporting downtime', value: '0' },
+    ],
+    sections: [
+      {
+        heading: 'Problem',
+        paragraphs: [
+          'Hundreds of business-critical Tableau dashboards needed to migrate to Power BI for cost and Microsoft-ecosystem alignment — without breaking the reports executives depend on every morning.',
+        ],
+      },
+      {
+        heading: 'Approach',
+        bullets: [
+          'Inventoried and tiered all dashboards by usage and criticality.',
+          'Built a parity mapping (visuals, calculations, data sources) and rebuilt in Power BI with DAX.',
+          'Ran Tableau and Power BI in parallel, reconciled outputs, then decommissioned by tier.',
+        ],
+      },
+      {
+        heading: 'Architecture',
+        paragraphs: ['Sources flow through Azure Data Factory into a governed model; dashboards are rebuilt in Power BI and validated against Tableau during a parallel run.'],
+        mermaid: `flowchart LR
+  SRC["Data Sources"] --> ADF["Azure Data Factory<br/>ETL"]
+  ADF --> MODEL[("Semantic Model<br/>DAX")]
+  MODEL --> PBI["Power BI<br/>Dashboards"]
+  TAB["Tableau (legacy)"] -. parallel run + reconcile .-> PBI`,
+      },
+      {
+        heading: 'Results',
+        metrics: [
+          { label: 'Dashboards migrated', value: '200+', sub: 'by usage tier' },
+          { label: 'Licensing cost', value: '−35%', sub: 'steady state' },
+          { label: 'Refresh time', value: '−30%', sub: 'optimized model' },
+          { label: 'Downtime', value: '0', sub: 'parallel run' },
+        ],
+      },
+      {
+        heading: 'Lessons Learned',
+        bullets: [
+          'Tier dashboards by real usage — not everything deserves a migration.',
+          'Parallel run + output reconciliation is what makes "zero downtime" true.',
+        ],
+      },
+    ],
+  },
 ];
 
 export function getCaseStudy(slug: string): CaseStudy | undefined {

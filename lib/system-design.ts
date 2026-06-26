@@ -143,4 +143,78 @@ export const diagrams: Diagram[] = [
   end
   FB --> PV`,
   },
+  {
+    id: 'loan-management',
+    title: 'Loan Management Platform Architecture',
+    summary:
+      'Strangler-pattern modernization: a monolith is decomposed into origination, servicing, and billing services behind a multi-tenant SaaS boundary, shipped continuously via CI/CD.',
+    components: [
+      'Modular services (origination, servicing, billing)',
+      'Multi-tenant SaaS boundary with per-tenant isolation',
+      'CI/CD pipeline for incremental releases',
+      'PostgreSQL data stores per service',
+      'API gateway for enterprise lender access',
+    ],
+    chart: `flowchart LR
+  MONO["Monolith<br/>Loan Platform"] --> SVC["Modular Services<br/>origination · servicing · billing"]
+  SVC --> SAAS[("Multi-Tenant SaaS")]
+  DEV["Teams"] --> CICD["CI/CD Pipeline"]
+  CICD --> SAAS
+  SAAS --> GW["API Gateway"]
+  GW --> CUST["Enterprise Lenders"]`,
+  },
+  {
+    id: 'twilio-marketo',
+    title: 'Customer Engagement Migration Architecture',
+    summary:
+      'Twilio flows and audiences are normalized through a mapping/ETL layer into Marketo programs, with webhooks preserving real-time triggers across email, SMS, and push.',
+    components: [
+      'Source: Twilio flows + audiences',
+      'Mapping / ETL with unified profile + consent model',
+      'Marketo programs & journeys (target)',
+      'Webhooks for real-time triggers',
+      'Multi-channel delivery (email · SMS · push)',
+    ],
+    chart: `flowchart LR
+  TW["Twilio<br/>flows · audiences"] --> MAP["Mapping + ETL<br/>profile · consent"]
+  MAP --> MKTO[("Marketo<br/>Programs & Journeys")]
+  HOOK["Webhooks /<br/>real-time triggers"] --> MKTO
+  MKTO --> CH["Email · SMS · Push"]`,
+  },
+  {
+    id: 'netsuite-erp',
+    title: 'NetSuite ERP Integration Architecture',
+    summary:
+      'Legacy finance, billing, and inventory systems feed a migration + integration layer into NetSuite, with SuiteScript automations and SSO-governed access feeding real-time reporting.',
+    components: [
+      'Legacy finance / billing / inventory sources',
+      'Migration + integration layer (REST / SOAP)',
+      'NetSuite ERP (GL, AR/AP, inventory)',
+      'SuiteScript automations',
+      'SSO-governed access + real-time dashboards',
+    ],
+    chart: `flowchart LR
+  SRC["Legacy Finance<br/>+ Billing + Inventory"] --> MIG["Migration +<br/>Integration Layer"]
+  MIG --> NS[("NetSuite ERP<br/>GL · AR/AP · Inventory")]
+  SS["SuiteScript<br/>Automations"] --> NS
+  NS --> RPT["Reporting +<br/>Real-time Dashboards"]`,
+  },
+  {
+    id: 'tableau-powerbi',
+    title: 'BI Migration Architecture (Tableau → Power BI)',
+    summary:
+      'Data sources flow through Azure Data Factory into a governed semantic model; dashboards are rebuilt in Power BI and validated against Tableau during a parallel run before cutover.',
+    components: [
+      'Data sources → Azure Data Factory (ETL)',
+      'Governed semantic model (DAX)',
+      'Power BI dashboards (target)',
+      'Tableau (legacy) for parallel run + reconciliation',
+      'Usage-tiered cutover',
+    ],
+    chart: `flowchart LR
+  SRC["Data Sources"] --> ADF["Azure Data Factory<br/>ETL"]
+  ADF --> MODEL[("Semantic Model<br/>DAX")]
+  MODEL --> PBI["Power BI<br/>Dashboards"]
+  TAB["Tableau (legacy)"] -. parallel run + reconcile .-> PBI`,
+  },
 ];

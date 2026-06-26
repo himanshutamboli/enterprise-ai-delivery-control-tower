@@ -19,6 +19,11 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
   const cs = getCaseStudy(params.slug);
   if (!cs) notFound();
 
+  // Sequential browsing; after the last case study, continue into System Design.
+  const idx = caseStudies.findIndex((c) => c.slug === cs.slug);
+  const prev = caseStudies[idx - 1];
+  const next = caseStudies[idx + 1];
+
   return (
     <>
       <SiteHeader />
@@ -119,12 +124,27 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           ))}
         </article>
 
-        {/* Footer nav */}
-        <div className="mt-14 border-t border-border pt-6">
-          <Link href="/case-studies" className="text-sm font-medium text-brand-soft hover:text-white">
-            ← Back to all case studies
-          </Link>
-        </div>
+        {/* Prev / next — closes the sequence into System Design */}
+        <nav className="mt-14 flex items-center justify-between gap-4 border-t border-border pt-6 text-sm">
+          {prev ? (
+            <Link href={`/case-studies/${prev.slug}`} className="text-brand-soft hover:text-white">
+              ← {prev.title}
+            </Link>
+          ) : (
+            <Link href="/case-studies" className="text-muted hover:text-white">
+              ← All case studies
+            </Link>
+          )}
+          {next ? (
+            <Link href={`/case-studies/${next.slug}`} className="text-right text-brand-soft hover:text-white">
+              {next.title} →
+            </Link>
+          ) : (
+            <Link href="/system-design" className="text-right text-brand-soft hover:text-white">
+              System Design →
+            </Link>
+          )}
+        </nav>
       </main>
     </>
   );

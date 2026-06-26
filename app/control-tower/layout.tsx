@@ -1,5 +1,6 @@
 import Sidebar from '@/components/layout/Sidebar';
 import MobileNav from '@/components/layout/MobileNav';
+import ScrollReveal from '@/components/ScrollReveal';
 
 export default function ControlTowerLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -9,6 +10,7 @@ export default function ControlTowerLayout({ children }: { children: React.React
         <MobileNav />
         <main className="flex-1">{children}</main>
       </div>
+      <ScrollReveal />
     </div>
   );
 }
