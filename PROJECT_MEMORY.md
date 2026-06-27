@@ -490,8 +490,26 @@ A professional GitHub-hosted portfolio showcasing enterprise AI delivery leaders
 * Verified via managed preview (separate port — left user's :3000 dev server untouched): all three render at desktop + 375px mobile, no overflow, no new console errors (only known Recharts defaultProps dev warning). Production build NOT run to avoid clobbering the running :3000 dev server — run `npm run build` after stopping dev.
 * Phases 2–4 (quality gates, traceability, compliance/controls, approvals/RACI, audit log, AI Governance Center, exec rollup) still open.
 
+## 2026-06-25 — Live deploy + data/version realism + QA POC screenshots
+
+* **Went live on GitHub Pages**: https://himanshutamboli.github.io/enterprise-ai-delivery-control-tower/ — auto-deploys via GitHub Actions on every push to `main`.
+* Reduced "huge/fake-looking" headline figures to realistic, internally-consistent values (Daily Requests→24.2K, Tokens→97M, Avg Daily Cost→$490 vs $580 budget, Tool Calls→76.4K, QA Test Cases→668, program budget $960K/$614K/$932K). Added 1M/3M/6M range filters to 6 charts (deterministic seeded generator in `lib/timeseries.ts` + `RangeTabs`). Applied a v1.0→v3.0 version scheme across QA + DevOps. Program burn given spikes, Milestones 4/6, Team 60+.
+* Rebuilt the QA Test-Suite POC from the owner's real screenshots (qa.staging.zbrain.ai — owner's own POC, not company/IP data): Smoke 187 / Regression 668 / Jira 625, 22 modules with exact scenario counts, env scoping, simulated Run.
+
+## 2026-06-25 — Reference analysis + branding + case-study expansion + AI XPLR
+
+* Analyzed reference portfolios (vishalbagla.com; replit one inaccessible).
+* Branding: hexagon **favicon** (`app/icon.svg`) + SVG **icon set** (`components/icons.tsx`) replacing unicode glyphs; all icons now stroke an **animated indigo→cyan→violet gradient** (SMIL `#brandGrad` def in `app/layout.tsx`) — the "GIF-like vibrant" ask (GIFs not feasible in static/CSP, animated SVG delivered instead).
+* +4 case studies (Loan Mgmt, Twilio→Marketo, NetSuite, Tableau→Power BI) + matching system-design diagrams + prev/next nav (last → System Design).
+* Researched + added **AI XPLR** (Hackett/ZBrain Gen-AI opportunity discovery → feasibility/ROI → agentic blueprints → AI COE dashboard → ZBrain Builder): case study, system-design diagram, and a 2nd LeewayHertz process-flow (`data/resume.json` `process_flows`), with metrics/tech/tags.
+* Systematic Mermaid sizing: rebuilt 6 case-study architectures larger; capped ALL diagrams to 700px height in `components/Mermaid.tsx` (Flow Builder = reference; ZBrain reduced to match). Test Suite KPIs now count-up like other modules.
+* Now: 8 case studies, 10 system-design diagrams, 28 static pages. Latest commit `dce7276`.
+* STANDING RULE: do not deploy future changes directly — owner reviews locally first, then says "Deploy".
+
 ### Next up (roadmap)
 
-* `blog/` — technical articles (Multi-Agent Systems, AI Observability, LLMOps for PMs, AI metrics, Eval frameworks).
-* git init + push + enable GitHub Pages (Settings → Pages → Source: GitHub Actions).
+* `blog/` — technical articles (Multi-Agent Systems, AI Observability, LLMOps for PMs, AI metrics, Eval frameworks) — biggest content gap.
+* Conversion layer: résumé PDF download, contact/social footer, landing profile card + positioning line, testimonials, builds section.
+* Verify illustrative metrics in the 5 newer case studies + AI XPLR against real figures.
+* Add Microsoft certificate PDF (`public/certificates/program-management-microsoft.pdf`) when available.
 * Optional: screenshots in README; per-case-study OG images.

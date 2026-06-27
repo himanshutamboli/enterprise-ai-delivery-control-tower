@@ -17,8 +17,10 @@
 | Experience detail pages | ✅ | 9-section per-company case study (SSG, 6 slugs), prev/next sequence | ends → Education page |
 | Education / Certifications / Recognitions | ✅ | Dedicated page; grouped certs with auto-appearing certificate links | fs-existence check on `public/certificates/` |
 | Certificate hosting | ✅ | 5 PDFs served; link auto-appears when file present | Microsoft cert pending |
-| Case studies | ✅ | Index + 7 detail pages (ZBrain Obs., Flow Builder, Cloud Migration, Loan Mgmt, Twilio→Marketo, NetSuite, Tableau→Power BI) + prev/next nav (last → System Design) | `lib/case-studies.ts`, inline Mermaid |
-| System design | ✅ | 9 Mermaid reference architectures w/ component lists | `lib/system-design.ts` |
+| Case studies | ✅ | Index + 8 detail pages (ZBrain Obs., Flow Builder, Cloud Migration, Loan Mgmt, Twilio→Marketo, NetSuite, Tableau→Power BI, AI XPLR) + prev/next nav (last → System Design) | `lib/case-studies.ts`, inline Mermaid |
+| System design | ✅ | 10 Mermaid reference architectures w/ component lists | `lib/system-design.ts` |
+| Brand favicon + animated icons | ✅ | Hexagon favicon + SVG icon set; all icons stroke an animated indigo→cyan→violet gradient (SMIL) | `app/icon.svg`, `components/icons.tsx`, `#brandGrad` in `app/layout.tsx` |
+| 1M/3M/6M chart range filters | ✅ | Deterministic seeded series; toggle on 6 charts (Executive + Observability) | `lib/timeseries.ts`, `components/ui/RangeTabs.tsx` |
 | ⌘K command palette | ✅ | Global keyboard + header/sidebar/mobile triggers; 23 destinations, filter + arrow/enter nav | `components/CommandPalette.tsx` |
 | Animated count-up KPIs + scroll-reveal | ✅ | KPI numbers ease up on load; below-fold panels fade/rise in (reduced-motion aware) | `KpiCard.tsx`, `ScrollReveal.tsx` |
 | Interactive KPI drill-downs | ✅ | Click a KPI → scroll to its chart + highlight; hover sparkline (Executive) | `KpiCard.tsx`, Executive page |
@@ -27,7 +29,7 @@
 | Deploy workflow | ✅ | GitHub Actions → Pages, base-path auto-resolved, `.nojekyll` | `.github/workflows/deploy.yml` |
 | AI continuity pack | ✅ | This 16-file system + gitignored `PRIVATE_PROFILE.md` | `AI_CONTEXT_PACK/` |
 | Prompt library | ✅ | `prompts/01–07` staged workflow templates | brainstorm→release + resume sync |
-| Live deployment on Pages | 🚧 | Repo connected & pushed; needs Pages source = GitHub Actions + verify | see `DEPLOYMENT.md` |
+| Live deployment on Pages | ✅ | Live at himanshutamboli.github.io/enterprise-ai-delivery-control-tower/; auto-deploys on push to `main` | see `DEPLOYMENT.md` |
 | Blog / Insights | 📋 | AI-PM thought-leadership articles (JSON/MD-driven) | top content gap |
 | Résumé PDF download | 📋 | One-click CV (`public/resume.pdf` + button) | high-value for recruiters |
 | Contact / "Work with me" + social footer | 📋 | Email, LinkedIn, GitHub, "open to roles" status, persistent footer | conversion layer |
