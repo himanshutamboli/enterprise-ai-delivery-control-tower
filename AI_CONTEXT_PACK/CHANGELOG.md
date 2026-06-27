@@ -5,6 +5,10 @@
 ## 2026-06-25
 | Change | Files affected | Reason |
 |---|---|---|
+| AI XPLR added: case study (`/case-studies/ai-xplr`), system-design diagram, and LeewayHertz experience (initiative, tech, tags, metrics, + a second AI XPLR process-flow) | `lib/case-studies.ts`, `lib/system-design.ts`, `data/resume.json`, `app/experience/[slug]/page.tsx` (multi-flow), `lib/experience.ts` (`process_flows`) | Represent AI XPLR alongside ZBrain |
+| Enlarged + enriched ZBrain and Flow Builder architecture diagrams; Mermaid diagrams now scale to fill container (≤860px) | `data/resume.json`, `lib/case-studies.ts`, `components/Mermaid.tsx` | Diagrams looked small/narrow |
+| Cloud Migration case study: added Problem + Architecture sections | `lib/case-studies.ts` | Were missing |
+| Test Suites KPIs now animate (count-up) | `components/ui/CountUp.tsx`, `components/qa/TestSuitesView.tsx` | Match other modules' flicker |
 | Brand favicon (hexagon) + line-icon set; replaced unicode glyphs in header/sidebar/module cards with SVG icons | `app/icon.svg`, `components/icons.tsx`, `SiteHeader`, `Sidebar`, `app/page.tsx` | Real logo instead of globe; advanced icons |
 | Applied v3.x version scheme to DevOps/DORA (env v3.0/v3.1-rc1) + Program dependency → v3.0 | `data/devops_metrics.json`, `data/program_metrics.json` | Version consistency (was missed) |
 | Fixed experience process-flow diagrams (`\n`→`<br/>` label breaks) | `data/resume.json` | Mermaid labels rendered literal `\n` |

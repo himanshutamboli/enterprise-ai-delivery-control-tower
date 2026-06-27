@@ -130,7 +130,18 @@ export default function ExperienceDetail({ params }: { params: { slug: string } 
 
           {/* 6. Architecture / Process Flow */}
           <Section title="Architecture / Process Flow">
-            <Mermaid id={`exp-${c.slug}`} chart={c.process_flow} />
+            {c.process_flows && c.process_flows.length > 0 ? (
+              <div className="space-y-6">
+                {c.process_flows.map((f, i) => (
+                  <div key={i}>
+                    <div className="mb-2 stat-label">{f.title}</div>
+                    <Mermaid id={`exp-${c.slug}-${i}`} chart={f.chart} />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <Mermaid id={`exp-${c.slug}`} chart={c.process_flow} />
+            )}
           </Section>
 
           {/* 7. Technology Stack */}

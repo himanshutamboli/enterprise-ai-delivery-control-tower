@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import Panel from '@/components/ui/Panel';
+import CountUp from '@/components/ui/CountUp';
 import data from '@/data/qa_suites.json';
 
 type Suite = (typeof data.suites)[number];
@@ -55,7 +56,7 @@ export default function TestSuitesView() {
         {KPIS.map((kpi) => (
           <div key={kpi.label} className="panel panel-pad">
             <div className={`text-2xl font-semibold tracking-tight ${kpi.tone === 'success' ? 'text-success' : 'text-white'}`}>
-              {kpi.value}
+              <CountUp value={kpi.value} />
             </div>
             <div className="mt-1 stat-label">{kpi.label}</div>
           </div>

@@ -153,15 +153,31 @@ export const caseStudies: CaseStudy[] = [
       {
         heading: 'Architecture',
         paragraphs: [
-          'The canvas compiles to the same versioned workflow spec the runtime already executes, so there is no second execution path to maintain. Validation and eval run before promotion.',
+          'The canvas compiles to the same versioned workflow spec the runtime already executes, so there is no second execution path to maintain. Authoring stays self-serve, while versioning, validation, and an eval gate enforce governance before anything is promoted — and production observability feeds back into the canvas.',
         ],
-        mermaid: `flowchart LR
-  UI["Visual Canvas<br/>agents · tools · branches"] --> SPEC["Workflow Spec<br/>versioned config"]
-  SPEC --> VAL["Validation<br/>schema + policy"]
-  VAL --> EVAL["Eval Gate"]
-  EVAL -->|pass| REG["Flow Registry"]
+        mermaid: `flowchart TB
+  subgraph Author["Authoring · self-serve"]
+    direction LR
+    PAL["Component Palette<br/>agents · tools · branches"] --> UI["Visual Canvas"]
+    TPL["Templates<br/>vetted starting points"] --> UI
+  end
+  UI --> SPEC["Workflow Spec<br/>versioned config"]
+  subgraph Gov["Governance"]
+    direction LR
+    SPEC --> VAL["Validation<br/>schema + policy"]
+    VAL --> EVAL{"Eval Gate"}
+    SPEC --> VER[("Version Store<br/>history + rollback")]
+  end
   EVAL -->|fail| FIX["Author Feedback"]
-  REG --> RT["Agent Runtime"]`,
+  FIX --> UI
+  EVAL -->|pass| REG[("Flow Registry")]
+  subgraph Run["Runtime"]
+    direction LR
+    RT["Agent Runtime<br/>orchestrator + tools"] --> OBS["Observability<br/>traces · cost · quality"]
+  end
+  REG --> RT
+  VER -. restore .-> REG
+  OBS -. feedback .-> UI`,
       },
       {
         heading: 'Roadmap',
@@ -209,6 +225,13 @@ export const caseStudies: CaseStudy[] = [
     ],
     sections: [
       {
+        heading: 'Problem',
+        paragraphs: [
+          'The on-prem data estate had outgrown its hardware. Analytics jobs queued for hours, storage and compute were capped, and there was no elastic capacity for the AI/ML workloads the business wanted to launch. Fixed infrastructure cost was high and rising, and every new data initiative waited on procurement.',
+          'The mandate was to move the estate to a governed cloud lakehouse without disrupting daily operations — protecting data correctness and business continuity while unlocking elastic compute and lower steady-state cost.',
+        ],
+      },
+      {
         heading: 'Migration Strategy',
         paragraphs: [
           'A big-bang cutover was off the table — the estate ran the business daily. I structured the program as sequenced waves, ordered by dependency and risk, with a clear "lift-and-shift vs. modernize" decision for each workload class.',
@@ -219,6 +242,27 @@ export const caseStudies: CaseStudy[] = [
           'Modernize high-value analytics onto the lakehouse (Databricks + Snowflake) for performance.',
           'Dual-run critical pipelines in parallel and reconcile outputs before decommissioning on-prem.',
         ],
+      },
+      {
+        heading: 'Architecture',
+        paragraphs: [
+          'Source systems land in a governed cloud zone (IAM, networking, and Terraform baselines), flow through Airflow ingestion into a Databricks + Snowflake lakehouse, and serve both BI and AI/ML workloads. Critical pipelines dual-run against on-prem with automated reconciliation until cutover.',
+        ],
+        mermaid: `flowchart LR
+  subgraph OnPrem["On-Prem · source"]
+    SRC["Data Sources<br/>DBs · files · streams"]
+  end
+  subgraph Cloud["Governed Cloud Lakehouse"]
+    direction TB
+    LZ["Landing Zone<br/>IAM · network · Terraform"]
+    ING["Ingestion<br/>Airflow"]
+    LAKE[("Lakehouse<br/>Databricks + Snowflake")]
+    LZ --> ING --> LAKE
+  end
+  SRC --> LZ
+  LAKE --> BI["Analytics + BI"]
+  LAKE --> AI["AI / ML Workloads"]
+  SRC -. dual-run + reconcile .-> LAKE`,
       },
       {
         heading: 'Risk Management',
@@ -498,6 +542,91 @@ export const caseStudies: CaseStudy[] = [
         bullets: [
           'Tier dashboards by real usage — not everything deserves a migration.',
           'Parallel run + output reconciliation is what makes "zero downtime" true.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'ai-xplr',
+    title: 'AI XPLR — Enterprise Gen AI Opportunity Discovery & Solution Design',
+    subtitle: 'From AI ambition to a feasibility-scored, ROI-prioritized agentic roadmap',
+    role: 'AI Technical Program Manager',
+    timeline: '2025 · ongoing',
+    domain: 'GenAI Strategy · AI Product',
+    stack: ['AI XPLR', 'ZBrain Builder', 'Agentic blueprints', 'ROI / feasibility scoring', 'AI COE dashboard'],
+    summary:
+      'Enterprises knew they wanted Gen AI but could not see where it would actually pay off — or how to get from idea to production. I drove delivery for AI XPLR (The Hackett Group / ZBrain), which discovers AI opportunities, evaluates them against an org’s real process and technology landscape, designs agentic solution blueprints, and prioritizes them by feasibility, cost, and ROI — then hands the winners to ZBrain Builder for implementation.',
+    heroMetrics: [
+      { label: 'Idea → roadmap', value: 'weeks → days' },
+      { label: 'Use cases assessed', value: '100s' },
+      { label: 'Prioritized by', value: 'ROI + feasibility' },
+      { label: 'Ideation → build', value: 'one handoff' },
+    ],
+    sections: [
+      {
+        heading: 'Problem',
+        paragraphs: [
+          'Gen AI strategy stalled at the starting line: leaders had long wish-lists of "AI ideas" with no consistent way to judge which were feasible, what they would cost, or what return they would generate against the organization’s actual processes and tech stack. Promising ideas died in slide decks, and the few that moved forward were chosen by intuition, not evidence.',
+        ],
+      },
+      {
+        heading: 'What AI XPLR Does',
+        paragraphs: ['AI XPLR turns AI ambition into an evidence-based, prioritized portfolio — and connects that portfolio directly to delivery.'],
+        bullets: [
+          'Opportunity discovery — surfaces where AI can reimagine work across functions.',
+          'Feasibility assessment — evaluates each opportunity against the existing process and technology landscape.',
+          'Agentic solution blueprints — designs how the solution would actually be built.',
+          'Simulation + prioritization — scores cost, ROI, and business value to rank initiatives.',
+          'AI COE dashboard — a single view of the enterprise AI portfolio and its progress.',
+        ],
+      },
+      {
+        heading: 'Architecture',
+        paragraphs: [
+          'A staged pipeline: discover opportunities, assess feasibility against the org landscape, simulate cost/ROI, design an agentic blueprint, and produce a prioritized roadmap that feeds both an AI COE dashboard and ZBrain Builder for implementation.',
+        ],
+        mermaid: `flowchart LR
+  subgraph Discover["Discover"]
+    OPP["Opportunity Discovery<br/>where AI reimagines work"]
+  end
+  subgraph Design["Assess & Design"]
+    direction TB
+    FEAS["Feasibility vs<br/>process + tech landscape"]
+    SIM["Simulation<br/>cost · ROI · value"]
+    BP["Agentic Solution<br/>Blueprint"]
+    FEAS --> SIM --> BP
+  end
+  OPP --> FEAS
+  BP --> PRI["Prioritized Roadmap<br/>feasibility · ROI"]
+  PRI --> COE["AI COE Dashboard"]
+  PRI --> BUILD["ZBrain Builder<br/>implementation"]`,
+      },
+      {
+        heading: 'My Role',
+        bullets: [
+          'Owned program delivery and requirements for AI XPLR capabilities alongside the ZBrain platform.',
+          'Shaped the opportunity-assessment and prioritization model (feasibility, cost, ROI) with product and SMEs.',
+          'Connected the AI XPLR → ZBrain Builder handoff so prioritized blueprints flow straight into delivery.',
+        ],
+      },
+      {
+        heading: 'Results',
+        paragraphs: [
+          'AI XPLR moved enterprises from scattered AI wish-lists to a defensible, prioritized roadmap in days, with each initiative scored on feasibility and ROI and ready to build — closing the gap between Gen AI ideation and production deployment.',
+        ],
+        metrics: [
+          { label: 'Idea → roadmap', value: 'weeks → days', sub: 'structured assessment' },
+          { label: 'Use cases assessed', value: '100s', sub: 'across functions' },
+          { label: 'Prioritization', value: 'ROI + feasibility', sub: 'evidence-based' },
+          { label: 'Handoff', value: 'XPLR → Builder', sub: 'ideation to delivery' },
+        ],
+      },
+      {
+        heading: 'Lessons Learned',
+        bullets: [
+          'Prioritization needs a shared scoring model — feasibility and ROI beat intuition and politics.',
+          'Discovery is only useful if it connects to delivery; the blueprint → build handoff is the whole point.',
+          'An AI COE dashboard turns a one-off assessment into an ongoing, governed portfolio.',
         ],
       },
     ],

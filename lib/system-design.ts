@@ -217,4 +217,24 @@ export const diagrams: Diagram[] = [
   MODEL --> PBI["Power BI<br/>Dashboards"]
   TAB["Tableau (legacy)"] -. parallel run + reconcile .-> PBI`,
   },
+  {
+    id: 'ai-xplr',
+    title: 'AI XPLR — Gen AI Opportunity & Solution Design',
+    summary:
+      'Discover AI opportunities, assess feasibility against the org’s process and tech landscape, simulate cost/ROI, design agentic blueprints, and prioritize — feeding an AI COE dashboard and ZBrain Builder for delivery.',
+    components: [
+      'Opportunity discovery across functions',
+      'Feasibility assessment vs. process + tech landscape',
+      'Simulation of cost, ROI, and business value',
+      'Agentic solution blueprint design',
+      'Prioritized roadmap → AI COE dashboard + ZBrain Builder',
+    ],
+    chart: `flowchart LR
+  OPP["Opportunity<br/>Discovery"] --> FEAS["Feasibility<br/>process + tech"]
+  FEAS --> SIM["Simulation<br/>cost · ROI · value"]
+  SIM --> BP["Agentic<br/>Blueprint"]
+  BP --> PRI["Prioritized<br/>Roadmap"]
+  PRI --> COE["AI COE<br/>Dashboard"]
+  PRI --> BUILD[("ZBrain Builder<br/>implementation")]`,
+  },
 ];

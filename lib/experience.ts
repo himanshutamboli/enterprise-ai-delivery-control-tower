@@ -45,6 +45,8 @@ export interface Company {
   portfolio_tags: string[];
   /** Mermaid architecture / process-flow definition. */
   process_flow: string;
+  /** Optional multiple titled flows (e.g., per product) — rendered instead of process_flow when present. */
+  process_flows?: { title: string; chart: string }[];
 }
 
 /** Companies sorted most-recent first for the timeline. */

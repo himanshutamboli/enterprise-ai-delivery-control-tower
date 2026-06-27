@@ -15,7 +15,7 @@
       "employment_type": "Full-time",
       "industry": "Enterprise AI / GenAI Platforms",
       "theme": "AI Platform Product Delivery",
-      "summary": "Technical Program Manager driving GenAI solutions and platform product delivery for ZBrain — owning requirements-to-delivery for a multi-agent AI platform spanning agent observability, Flow Builder, RAG pipelines, LLM workflows, AI governance, and LLMOps, while building the PM/QA/BA function from scratch.",
+      "summary": "Technical Program Manager driving GenAI solutions and platform product delivery for ZBrain and AI XPLR — owning requirements-to-delivery for a multi-agent AI platform and a Gen AI opportunity-discovery suite spanning agent observability, Flow Builder, RAG pipelines, LLM workflows, AI governance, and LLMOps, while building the PM/QA/BA function from scratch.",
       "business_context": [
         "ZBrain is an enterprise multi-agent AI platform delivered to large organizations adopting GenAI in production.",
         "Scope spans the full platform surface: multi-agent orchestration, agent observability, Flow Builder, RAG pipelines, and LLM workflows — under an AI governance and LLMOps model."
@@ -53,6 +53,13 @@
           "my_role": "Established governance and LLMOps practices.",
           "technologies": ["AI Governance", "LLMOps"],
           "outcomes": ["Brought quality and cost controls into the delivery lifecycle"]
+        },
+        {
+          "name": "AI XPLR — Gen AI Opportunity Discovery",
+          "description": "Gen AI opportunity discovery, feasibility/ROI assessment, and agentic solution design (The Hackett Group / ZBrain) — feeding prioritized blueprints into ZBrain Builder for delivery.",
+          "my_role": "Program delivery for AI XPLR capabilities and the XPLR → Builder handoff.",
+          "technologies": ["AI XPLR", "ZBrain Builder", "Agentic Blueprints"],
+          "outcomes": ["Turned AI wish-lists into ROI-prioritized, feasibility-scored roadmaps", "Connected ideation to delivery via ZBrain Builder"]
         }
       ],
       "responsibilities": [
@@ -66,7 +73,7 @@
       "technical_environment": {
         "cloud": [],
         "data": ["RAG Pipelines"],
-        "ai": ["ZBrain", "Multi-Agent Systems", "LLM Workflows", "Agent Observability", "Flow Builder", "AI Governance", "LLMOps"],
+        "ai": ["ZBrain", "AI XPLR", "Multi-Agent Systems", "LLM Workflows", "Agent Observability", "Flow Builder", "AI Governance", "LLMOps"],
         "tools": []
       },
       "delivery_practices": ["PRD-driven product delivery", "Agile / sprint planning", "LLMOps", "AI governance"],
@@ -76,15 +83,21 @@
         { "value": "~30%", "impact": "Token cost reduction" },
         { "value": "~20%", "impact": "Fewer production defects" },
         { "value": "60+", "impact": "Member organization managed" },
-        { "value": "$2M", "impact": "Program delivery" }
+        { "value": "$2M", "impact": "Program delivery" },
+        { "value": "100s", "impact": "AI use cases assessed via AI XPLR" },
+        { "value": "weeks → days", "impact": "AI idea-to-roadmap (AI XPLR)" }
       ],
       "achievements": [
         "Built the PM / QA / BA function from scratch",
         "Employee of the Month — Jul 2025 (LeewayHertz)",
         "Best Executor Spot Award — Mar & Apr 2025 (The Hackett Group)"
       ],
-      "portfolio_tags": ["AI Platform", "Multi-Agent", "LLMOps", "Agent Observability", "RAG", "AI Governance"],
-      "process_flow": "flowchart LR\n  REQ[\"Requirements<br/>40+ PRDs\"] --> SPRINT[\"Sprint Planning\"]\n  SPRINT --> BUILD[\"Platform Delivery<br/>ZBrain\"]\n  BUILD --> AGENTS[\"Multi-Agent + RAG<br/>+ Flow Builder\"]\n  AGENTS --> OBS[\"Agent Observability\"]\n  OBS --> GOV[\"AI Governance + LLMOps\"]\n  GOV --> REQ"
+      "portfolio_tags": ["AI Platform", "AI XPLR", "Multi-Agent", "LLMOps", "Agent Observability", "RAG", "AI Governance"],
+      "process_flow": "flowchart LR\n  REQ[\"Requirements<br/>40+ PRDs\"] --> SPRINT[\"Sprint Planning\"]\n  SPRINT --> BUILD[\"Platform Delivery<br/>ZBrain\"]\n  BUILD --> AGENTS[\"Multi-Agent + RAG<br/>+ Flow Builder\"]\n  AGENTS --> OBS[\"Agent Observability\"]\n  OBS --> GOV[\"AI Governance + LLMOps\"]\n  GOV --> REQ",
+      "process_flows": [
+        { "title": "ZBrain — Multi-Agent Platform", "chart": "flowchart TB\n  subgraph Plan[\"Plan\"]\n    direction LR\n    REQ[\"Requirements<br/>40+ PRDs\"] --> SPRINT[\"Sprint Planning\"]\n  end\n  subgraph Build[\"Build · ZBrain Platform\"]\n    direction LR\n    RAG[\"RAG Pipelines\"] --> ORCH[\"Orchestrator Agent\"]\n    FLOW[\"Flow Builder\"] --> ORCH\n    ORCH --> SUB[\"Specialized Agents\"]\n    SUB --> TOOLS[\"Governed Tool Layer\"]\n  end\n  subgraph Operate[\"Operate & Govern\"]\n    direction LR\n    OBS[\"Agent Observability<br/>traces · cost · quality\"] --> EVAL{\"Eval Gate\"}\n    EVAL --> GRD[\"Guardrails<br/>safety · cost · PII\"]\n    GRD --> GOV[\"AI Governance + LLMOps\"]\n  end\n  SPRINT --> ORCH\n  TOOLS --> OBS\n  GOV -. feedback .-> REQ" },
+        { "title": "AI XPLR — Opportunity Discovery & Solution Design", "chart": "flowchart LR\n  OPP[\"Opportunity<br/>Discovery\"] --> FEAS[\"Feasibility<br/>process + tech\"]\n  FEAS --> SIM[\"Simulation<br/>cost · ROI · value\"]\n  SIM --> BP[\"Agentic<br/>Blueprint\"]\n  BP --> PRI[\"Prioritized<br/>Roadmap\"]\n  PRI --> COE[\"AI COE<br/>Dashboard\"]\n  PRI --> BUILD[\"ZBrain Builder<br/>implementation\"]" }
+      ]
     },
     {
       "slug": "ncs-global",
