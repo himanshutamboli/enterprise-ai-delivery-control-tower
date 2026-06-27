@@ -5,6 +5,8 @@
 ## 2026-06-25
 | Change | Files affected | Reason |
 |---|---|---|
+| Animated brand-gradient on all SVG icons/logos (indigo→cyan→violet shimmer via SMIL) | `app/layout.tsx` (gradient def), `components/icons.tsx` | Vibrant "animated" icons (GIF alternative) |
+| Systematic case-study diagram sizing: rebuilt 6 architectures (Cloud Migration, Loan, Twilio→Marketo, NetSuite, Tableau→Power BI, AI XPLR) larger; capped all Mermaid diagrams to 700px height | `lib/case-studies.ts`, `components/Mermaid.tsx` | Diagrams were small/inconsistent; no-zoom consistent size |
 | AI XPLR added: case study (`/case-studies/ai-xplr`), system-design diagram, and LeewayHertz experience (initiative, tech, tags, metrics, + a second AI XPLR process-flow) | `lib/case-studies.ts`, `lib/system-design.ts`, `data/resume.json`, `app/experience/[slug]/page.tsx` (multi-flow), `lib/experience.ts` (`process_flows`) | Represent AI XPLR alongside ZBrain |
 | Enlarged + enriched ZBrain and Flow Builder architecture diagrams; Mermaid diagrams now scale to fill container (≤860px) | `data/resume.json`, `lib/case-studies.ts`, `components/Mermaid.tsx` | Diagrams looked small/narrow |
 | Cloud Migration case study: added Problem + Architecture sections | `lib/case-studies.ts` | Were missing |

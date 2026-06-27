@@ -8,7 +8,7 @@ function Base({ children, ...props }: IconProps & { children: React.ReactNode })
     <svg
       viewBox="0 0 24 24"
       fill="none"
-      stroke="currentColor"
+      stroke="url(#brandGrad)"
       strokeWidth={1.8}
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -25,7 +25,7 @@ export function LogoIcon(props: IconProps) {
   return (
     <Base {...props}>
       <path d="M12 2.5 L20.5 7 V17 L12 21.5 L3.5 17 V7 Z" />
-      <circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none" />
+      <circle cx="12" cy="12" r="2.4" fill="url(#brandGrad)" stroke="none" />
     </Base>
   );
 }
@@ -78,7 +78,7 @@ export function ProgramIcon(props: IconProps) {
     <Base {...props}>
       <circle cx="12" cy="12" r="8.5" />
       <circle cx="12" cy="12" r="4.5" />
-      <circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none" />
+      <circle cx="12" cy="12" r="1.3" fill="url(#brandGrad)" stroke="none" />
     </Base>
   );
 }

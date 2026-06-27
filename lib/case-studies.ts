@@ -65,15 +65,12 @@ export const caseStudies: CaseStudy[] = [
         paragraphs: [
           'We standardized on OpenTelemetry-based instrumentation across the agent runtime, fanned traces and metrics into purpose-built stores, and ran an asynchronous eval service to score quality without adding request latency. Everything converged on a single observability surface.',
         ],
-        mermaid: `flowchart TD
-  A["Agents + Tools"] --> SDK["OTel SDK<br/>spans · metrics · logs"]
-  SDK --> COL["Collector"]
-  COL --> TS[("Trace Store<br/>ClickHouse")]
-  COL --> MET[("Metrics")]
-  TS --> EVAL["Eval Service<br/>LLM-as-judge"]
+        mermaid: `flowchart TB
+  AGENTS["Agents + Tools"] --> SDK["OTel SDK<br/>traces · metrics · logs"]
+  SDK --> COL[("Collector + Stores<br/>ClickHouse · Prometheus")]
+  COL --> EVAL["Eval Service<br/>LLM-as-judge"]
+  COL --> DASH["Observability Dashboards"]
   EVAL --> SCORE[("Quality Scores")]
-  TS --> DASH["Observability Dashboards"]
-  MET --> DASH
   SCORE --> DASH
   DASH --> ALERT["Alerting + On-call"]`,
       },
@@ -248,21 +245,32 @@ export const caseStudies: CaseStudy[] = [
         paragraphs: [
           'Source systems land in a governed cloud zone (IAM, networking, and Terraform baselines), flow through Airflow ingestion into a Databricks + Snowflake lakehouse, and serve both BI and AI/ML workloads. Critical pipelines dual-run against on-prem with automated reconciliation until cutover.',
         ],
-        mermaid: `flowchart LR
+        mermaid: `flowchart TB
   subgraph OnPrem["On-Prem · source"]
+    direction LR
     SRC["Data Sources<br/>DBs · files · streams"]
+    JOBS["Legacy Jobs<br/>schedulers"]
   end
-  subgraph Cloud["Governed Cloud Lakehouse"]
-    direction TB
-    LZ["Landing Zone<br/>IAM · network · Terraform"]
-    ING["Ingestion<br/>Airflow"]
-    LAKE[("Lakehouse<br/>Databricks + Snowflake")]
-    LZ --> ING --> LAKE
+  subgraph Landing["Cloud Landing Zone"]
+    direction LR
+    IAM["IAM + Network<br/>Terraform baselines"] --> ING["Ingestion<br/>Airflow"]
   end
-  SRC --> LZ
-  LAKE --> BI["Analytics + BI"]
-  LAKE --> AI["AI / ML Workloads"]
-  SRC -. dual-run + reconcile .-> LAKE`,
+  subgraph Lake["Governed Lakehouse"]
+    direction LR
+    RAW[("Raw / Bronze")] --> CUR[("Curated<br/>Databricks + Snowflake")]
+  end
+  subgraph Consume["Consumption"]
+    direction LR
+    BI["Analytics + BI"]
+    AI["AI / ML Workloads"]
+  end
+  SRC --> IAM
+  JOBS --> ING
+  ING --> RAW
+  CUR --> BI
+  CUR --> AI
+  CUR --> GOV["Governance<br/>catalog · lineage · FinOps"]
+  SRC -. dual-run + reconcile .-> CUR`,
       },
       {
         heading: 'Risk Management',
@@ -338,12 +346,30 @@ export const caseStudies: CaseStudy[] = [
       {
         heading: 'Architecture',
         paragraphs: ['Strangler-pattern modernization — services peel off the monolith while a CI/CD pipeline ships incrementally to the multi-tenant platform.'],
-        mermaid: `flowchart LR
-  MONO["Monolith<br/>Loan Platform"] --> SVC["Modular Services<br/>origination · servicing · billing"]
-  SVC --> SAAS[("Multi-Tenant SaaS")]
-  DEV["Teams"] --> CICD["CI/CD Pipeline"]
-  CICD --> SAAS
-  SAAS --> CUST["Enterprise Lenders"]`,
+        mermaid: `flowchart TB
+  subgraph Channels["Channels"]
+    direction LR
+    WEB["Web App<br/>React"]
+    API["Partner APIs"]
+  end
+  GW["API Gateway"]
+  subgraph Services["Modular Services"]
+    direction LR
+    ORIG["Origination"] --> SERV["Servicing"]
+    SERV --> BILL["Billing"]
+  end
+  subgraph Platform["Multi-Tenant SaaS"]
+    direction LR
+    RT["Service Runtime"]
+    DB[("PostgreSQL<br/>per-tenant")]
+  end
+  WEB --> GW
+  API --> GW
+  GW --> ORIG
+  ORIG --> RT
+  RT --> DB
+  CICD["CI/CD Pipeline"] --> RT
+  MONO["Legacy Monolith"] -. strangler migration .-> ORIG`,
       },
       {
         heading: 'Delivery Approach',
@@ -406,11 +432,26 @@ export const caseStudies: CaseStudy[] = [
       {
         heading: 'Architecture',
         paragraphs: ['Flows and audiences are mapped through an ETL/normalization layer into Marketo programs, with webhooks preserving real-time triggers.'],
-        mermaid: `flowchart LR
-  TW["Twilio<br/>flows · audiences"] --> MAP["Mapping + ETL<br/>profile · consent"]
-  MAP --> MKTO[("Marketo<br/>Programs & Journeys")]
-  HOOK["Webhooks /<br/>Real-time triggers"] --> MKTO
-  MKTO --> CH["Email · SMS · Push"]`,
+        mermaid: `flowchart TB
+  subgraph Source["Source · Twilio"]
+    direction LR
+    TWF["Messaging Flows"]
+    TWA["Audiences"]
+  end
+  subgraph Migrate["Migration Layer"]
+    direction LR
+    MAP["Journey Mapping"] --> ETL["ETL + Normalize"]
+    ETL --> PROF["Unified Profile<br/>+ consent"]
+  end
+  subgraph Target["Target · Marketo"]
+    direction LR
+    MKTO[("Programs & Journeys")] --> CH["Email · SMS · Push"]
+  end
+  TWF --> MAP
+  TWA --> MAP
+  PROF --> MKTO
+  HOOK["Webhooks<br/>real-time triggers"] --> MKTO
+  TWF -. dual-run + reconcile .-> MKTO`,
       },
       {
         heading: 'Results',
@@ -464,11 +505,27 @@ export const caseStudies: CaseStudy[] = [
       {
         heading: 'Architecture',
         paragraphs: ['Source systems feed a migration + integration layer into NetSuite, with SuiteScript automations and SSO for governed access.'],
-        mermaid: `flowchart LR
-  SRC["Legacy Finance<br/>+ Billing + Inventory"] --> MIG["Migration +<br/>Integration Layer"]
-  MIG --> NS[("NetSuite ERP<br/>GL · AR/AP · Inventory")]
-  NS --> RPT["Reporting +<br/>Real-time Dashboards"]
-  SS["SuiteScript<br/>Automations"] --> NS`,
+        mermaid: `flowchart TB
+  subgraph Legacy["Legacy Systems"]
+    direction LR
+    FIN["Finance"]
+    BILL["Billing"]
+    INV["Inventory"]
+  end
+  subgraph Bridge["Migration + Integration"]
+    direction LR
+    MIG["Data Migration<br/>+ reconciliation"] --> INT["Integration Layer<br/>REST / SOAP"]
+  end
+  subgraph ERP["NetSuite ERP"]
+    direction LR
+    CORE[("GL · AR/AP · Inventory")]
+    SS["SuiteScript<br/>automations"] --> CORE
+  end
+  FIN --> MIG
+  BILL --> MIG
+  INV --> MIG
+  INT --> CORE
+  CORE --> RPT["Reporting +<br/>real-time dashboards"]`,
       },
       {
         heading: 'Results',
@@ -522,11 +579,24 @@ export const caseStudies: CaseStudy[] = [
       {
         heading: 'Architecture',
         paragraphs: ['Sources flow through Azure Data Factory into a governed model; dashboards are rebuilt in Power BI and validated against Tableau during a parallel run.'],
-        mermaid: `flowchart LR
-  SRC["Data Sources"] --> ADF["Azure Data Factory<br/>ETL"]
-  ADF --> MODEL[("Semantic Model<br/>DAX")]
-  MODEL --> PBI["Power BI<br/>Dashboards"]
-  TAB["Tableau (legacy)"] -. parallel run + reconcile .-> PBI`,
+        mermaid: `flowchart TB
+  subgraph Sources["Data Sources"]
+    direction LR
+    DB["Databases"]
+    APP["Apps · files"]
+  end
+  subgraph Pipeline["Pipeline"]
+    direction LR
+    ADF["Azure Data Factory<br/>ETL"] --> MODEL[("Semantic Model<br/>DAX")]
+  end
+  subgraph Target["Target · Power BI"]
+    direction LR
+    PBI["Dashboards"] --> WS["Workspaces<br/>by usage tier"]
+  end
+  DB --> ADF
+  APP --> ADF
+  MODEL --> PBI
+  TAB["Tableau<br/>(legacy)"] -. parallel run + reconcile .-> PBI`,
       },
       {
         heading: 'Results',
@@ -585,21 +655,23 @@ export const caseStudies: CaseStudy[] = [
         paragraphs: [
           'A staged pipeline: discover opportunities, assess feasibility against the org landscape, simulate cost/ROI, design an agentic blueprint, and produce a prioritized roadmap that feeds both an AI COE dashboard and ZBrain Builder for implementation.',
         ],
-        mermaid: `flowchart LR
+        mermaid: `flowchart TB
   subgraph Discover["Discover"]
-    OPP["Opportunity Discovery<br/>where AI reimagines work"]
+    direction LR
+    OPP["Opportunity<br/>Discovery"] --> MAP["Process + Tech<br/>Landscape Map"]
   end
   subgraph Design["Assess & Design"]
-    direction TB
-    FEAS["Feasibility vs<br/>process + tech landscape"]
-    SIM["Simulation<br/>cost · ROI · value"]
-    BP["Agentic Solution<br/>Blueprint"]
-    FEAS --> SIM --> BP
+    direction LR
+    FEAS["Feasibility"] --> SIM["Simulation<br/>cost · ROI · value"]
+    SIM --> BP["Agentic<br/>Blueprint"]
   end
-  OPP --> FEAS
-  BP --> PRI["Prioritized Roadmap<br/>feasibility · ROI"]
-  PRI --> COE["AI COE Dashboard"]
-  PRI --> BUILD["ZBrain Builder<br/>implementation"]`,
+  subgraph Deliver["Prioritize & Deliver"]
+    direction LR
+    PRI["Prioritized Roadmap<br/>feasibility · ROI"] --> COE["AI COE<br/>Dashboard"]
+    PRI --> BUILD[("ZBrain Builder<br/>implementation")]
+  end
+  MAP --> FEAS
+  BP --> PRI`,
       },
       {
         heading: 'My Role',
